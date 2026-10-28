@@ -69,6 +69,7 @@ function pagina({ caminho, titulo, descricao, conteudo, imagem = 'og.jpg', tipo 
   <meta name="twitter:title" content="${esc(titulo)}">
   <meta name="twitter:description" content="${esc(descricao)}">
   <meta name="twitter:image" content="${SITE}/assets/img/${imagem}">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png?v=2">
   <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png?v=2">
