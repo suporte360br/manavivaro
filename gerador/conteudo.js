@@ -97,7 +97,7 @@ ${AVISO}`
 
 <h2>O que muda com a reforma tributária</h2>
 <p>A Emenda Constitucional 132/2023 determinou que o ITCMD seja <strong>progressivo</strong>, ou seja, com alíquotas maiores para heranças e doações de valor mais alto, e cada estado está ajustando a sua lei. A tendência é de aumento de custo para grandes patrimônios, o que tem levado muitas famílias a antecipar o planejamento.</p>
-<p>Também mudou a regra de qual estado cobra o imposto sobre bens móveis, títulos e créditos: passa a ser o do domicílio de quem faleceu. Imóveis continuam tributados no estado onde estão.</p>
+<p>Também mudou a regra de qual estado cobra o imposto sobre bens móveis, títulos e créditos: passa a ser o do domicílio de quem faleceu ou de quem doou. Imóveis continuam tributados no estado onde estão.</p>
 
 <h2>Qual escolher?</h2>
 <p>Não existe resposta única. Patrimônios menores costumam ficar bem com testamento e inventário em cartório. Famílias com vários imóveis, renda de aluguel ou empresas tendem a se beneficiar da holding. Muitas vezes, a melhor solução combina os instrumentos: holding para os bens principais e testamento para o restante.</p>
@@ -130,7 +130,7 @@ ${AVISO}`
 <p>Prevista no art. 547 do Código Civil, faz com que as quotas <strong>voltem para o doador</strong> se ele sobreviver ao herdeiro que as recebeu. Evita que o patrimônio siga para a família do cônjuge do filho falecido.</p>
 
 <h2>Atenção à legítima</h2>
-<p>Metade do patrimônio é reservada por lei aos herdeiros necessários (a chamada legítima). Sobre essa parte, as cláusulas restritivas só valem se houver <strong>justa causa declarada</strong> no documento (art. 1.848 do Código Civil). Na doação, a lei também exige atenção ao adiantamento de legítima e à colação, para que nenhum filho seja favorecido sem querer.</p>
+<p>Metade do patrimônio é reservada por lei aos herdeiros necessários (a chamada legítima). No testamento, a lei só admite cláusulas restritivas sobre essa parte se houver <strong>justa causa declarada</strong> (<a href="https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm" rel="noopener">art. 1.848 do Código Civil</a>), e a mesma exigência costuma ser aplicada às doações que adiantam a legítima. Na doação, a lei também exige atenção ao adiantamento de legítima e à colação, para que nenhum filho seja favorecido sem querer.</p>
 
 <h2>Combine com o contrato social</h2>
 <p>As cláusulas da doação funcionam melhor quando o contrato social e o acordo de sócios caminham juntos: regras para entrada de terceiros, direito de preferência entre os sócios, forma de cálculo do valor das quotas em caso de saída e quem administra a sociedade.</p>
@@ -150,7 +150,7 @@ ${AVISO}`
 
 <h2>Na holding (lucro presumido)</h2>
 <p>No lucro presumido, a receita de aluguel tem presunção de 32% para IRPJ e CSLL. Somando PIS e Cofins no regime cumulativo, a carga federal costuma ficar <strong>em torno de 11% a 15% da receita</strong>, dependendo do valor, em holdings de pequeno e médio porte (o adicional de IRPJ incide sobre a parcela do lucro presumido que passar de R$ 20 mil por mês).</p>
-<p>Depois disso, os lucros são distribuídos aos sócios. Desde 2026, a Lei 15.270/2025 prevê retenção de 10% de IR sobre dividendos que uma mesma empresa pague a uma pessoa física acima de R$ 50 mil por mês, além de uma tributação mínima anual para rendas muito altas. Isso precisa entrar na conta.</p>
+<p>Depois disso, os lucros são distribuídos aos sócios. Desde janeiro de 2026, a <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15270.htm" rel="noopener">Lei 15.270/2025</a> prevê que, quando uma mesma empresa paga a uma mesma pessoa física mais de R$ 50 mil em lucros e dividendos no mês, há retenção de 10% de IR sobre o valor total pago, além de uma tributação mínima anual para rendas muito altas. Isso precisa entrar na conta.</p>
 
 <h2>Levar os imóveis para a holding</h2>
 <ul>
@@ -160,7 +160,7 @@ ${AVISO}`
 </ul>
 
 <h2>A reforma tributária e os aluguéis</h2>
-<p>Com a Lei Complementar 214/2025, a locação de imóveis passa a ter IBS e CBS, os novos tributos sobre consumo, com <strong>redução de 70% da alíquota</strong> e transição gradual a partir de 2027. Pessoas físicas também podem virar contribuintes se tiverem muitos imóveis alugados e receita anual acima dos limites da lei. Esse ponto pode mudar a comparação entre pessoa física e holding: vale refazer a simulação.</p>
+<p>Com a Lei Complementar 214/2025, a locação de imóveis passa a ter IBS e CBS, os novos tributos sobre consumo, com <strong>redução de 70% da alíquota</strong> e transição gradual a partir de 2027. Pessoas físicas também passam a ser contribuintes quando, no ano anterior, a receita de aluguéis passar de R$ 240 mil e envolver mais de 3 imóveis (<a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm" rel="noopener">art. 251 da LC 214/2025</a>). Esse ponto pode mudar a comparação entre pessoa física e holding: vale refazer a simulação.</p>
 
 <h2>Como decidir</h2>
 <ol>
