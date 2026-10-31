@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { materias } = require('./conteudo');
+const { materias, servicos } = require('./conteudo');
 
 const RAIZ = path.join(__dirname, '..');
 const SITE = 'https://manavivaro.com.br';
@@ -19,6 +19,17 @@ const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(
 const dataBR = d => new Date(d + 'T12:00:00').toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 // Mais recentes primeiro; na mesma data, vale a ordem do conteudo.js
 const ordenadas = materias.map((m, i) => ({ ...m, i })).sort((a, b) => b.data.localeCompare(a.data) || a.i - b.i);
+const porSlug = slug => ordenadas.find(m => m.slug === slug);
+
+// Fotos com versão WebP (gerada à parte em <nome>-<largura>.webp) e JPG de reserva.
+const LARGURAS = { 'hero.jpg': [800, 1536], 'familia-card.jpg': [600, 1200], 'protecao.jpg': [600, 1200] };
+function foto(arquivo, alt, largura, altura, { carregar = 'lazy', sizes = '(max-width: 760px) 100vw, 600px', classe = '', extra = '' } = {}) {
+  const img = `<img${classe ? ` class="${classe}"` : ''} src="/assets/img/${arquivo}" alt="${esc(alt)}" width="${largura}" height="${altura}"${carregar === 'eager' ? ' fetchpriority="high"' : ' loading="lazy"'}${extra}>`;
+  const ws = LARGURAS[arquivo];
+  if (!ws) return img;
+  const base = arquivo.replace(/\.jpg$/, '');
+  return `<picture><source type="image/webp" srcset="${ws.map(w => `/assets/img/${base}-${w}.webp ${w}w`).join(', ')}" sizes="${sizes}">${img}</picture>`;
+}
 
 const svg = d => `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 const icones = {
@@ -40,9 +51,11 @@ const MENU = [
   ['/blog/', 'Blog'],
 ];
 
-function pagina({ caminho, titulo, descricao, conteudo, imagem = 'og.jpg', tipo = 'website', jsonld = [], semIndex = false, preload = '' }) {
+function pagina({ caminho, titulo, tituloSEO, descricao, conteudo, imagem = 'og.jpg', tipo = 'website', jsonld = [], semIndex = false, preload = '' }) {
   const url = SITE + caminho;
-  const tituloCompleto = caminho === '/' ? titulo : `${titulo} | ${NOME}`;
+  // O Google corta títulos por volta de 60 caracteres: só acrescenta a marca se couber
+  const base = tituloSEO || titulo;
+  const tituloCompleto = caminho === '/' || `${base} | ${NOME}`.length > 60 ? base : `${base} | ${NOME}`;
   const menu = MENU.map(([href, txt]) => {
     const atual = href === '/' ? caminho === '/' : caminho.startsWith(href);
     return `<li><a href="${href}"${atual ? ' aria-current="page"' : ''}>${txt}</a></li>`;
@@ -159,7 +172,7 @@ function placa(m, classe = '') {
 
 function cartaoMateria(m) {
   const midia = m.imagem
-    ? `<img src="/assets/img/${m.imagem}" alt="${esc(m.imagemAlt)}" width="1200" height="800" loading="lazy">`
+    ? foto(m.imagem, m.imagemAlt, 1200, 800, { sizes: '(max-width: 760px) 100vw, 380px' })
     : placa(m);
   return `<article class="cartao" data-tema="${esc(m.tema)}">
         <div class="midia">${midia}</div>
@@ -202,11 +215,16 @@ const SERVICOS = [
     ['Acordo de sócios e protocolo familiar', 'Conselho de família', 'Preparação de sucessores']],
 ];
 
-const servicoHTML = ([ic, titulo, texto, itens], comLista) => `<div class="servico">
+// Serviços com página própria ganham o link "Saiba mais"
+const paginaServico = nome => servicos.find(s => s.nome === nome);
+const servicoHTML = ([ic, titulo, texto, itens], comLista) => {
+  const sp = paginaServico(titulo);
+  return `<div class="servico">
             <div class="icone">${icones[ic]}</div>
-            <h3>${titulo}</h3>
-            <p>${texto}</p>${comLista ? `\n            <ul>${itens.map(i => `<li>${i}</li>`).join('')}</ul>` : ''}
+            <h3>${sp ? `<a href="/servicos/${sp.slug}/">${titulo}</a>` : titulo}</h3>
+            <p>${texto}</p>${comLista ? `\n            <ul>${itens.map(i => `<li>${i}</li>`).join('')}</ul>` : ''}${sp ? `\n            <p class="servico-link"><a href="/servicos/${sp.slug}/" aria-hidden="true" tabindex="-1">Saiba mais →</a></p>` : ''}
           </div>`;
+};
 
 const FAQ = [
   ['O que é uma holding familiar?', 'É uma empresa criada para ser dona dos bens e das participações da família, como imóveis, aplicações e quotas de outras empresas. Ela organiza a gestão do patrimônio e permite planejar a sucessão em vida.'],
@@ -221,9 +239,9 @@ const paginas = {};
 // Início
 paginas['index.html'] = pagina({
   caminho: '/',
-  titulo: 'Mana Vivaro | Administração de holding familiar e assessoria empresarial',
+  titulo: 'Mana Vivaro | Holding familiar e assessoria empresarial',
   descricao: 'Administração de holding familiar, planejamento sucessório, gestão de imóveis e assessoria empresarial para famílias em São Paulo.',
-  preload: '<link rel="preload" as="image" href="/assets/img/hero.jpg">\n  ',
+  preload: '<link rel="preload" as="image" type="image/webp" imagesrcset="/assets/img/hero-800.webp 800w, /assets/img/hero-1536.webp 1536w" imagesizes="100vw">\n  ',
   jsonld: [ORG, {
     '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#site', url: SITE + '/', name: NOME, inLanguage: 'pt-BR', publisher: { '@id': SITE + '/#organizacao' }
   }, {
@@ -232,7 +250,7 @@ paginas['index.html'] = pagina({
   }],
   conteudo: `
     <section class="hero">
-      <img src="/assets/img/hero.jpg" alt="" width="1536" height="1024" fetchpriority="high">
+      ${foto('hero.jpg', '', 1536, 1024, { carregar: 'eager', sizes: '100vw' })}
       <div class="container">
         <span class="sobretitulo">Holding familiar</span>
         <h1>O patrimônio da sua família, <span class="destaque-ouro">organizado para gerações</span></h1>
@@ -253,7 +271,7 @@ paginas['index.html'] = pagina({
           <p>Da administração do dia a dia ao planejamento de longo prazo, apoiamos a família em cada etapa da gestão do patrimônio.</p>
         </div>
         <div class="grade grade-3">
-          ${SERVICOS.slice(0, 3).map(s => servicoHTML(s, true)).join('\n          ')}
+          ${SERVICOS.filter(s => paginaServico(s[1])).map(s => servicoHTML(s, true)).join('\n          ')}
         </div>
         <p style="margin-top:28px"><a class="botao botao-contorno" href="/servicos/">Ver todos os serviços</a></p>
       </div>
@@ -261,7 +279,7 @@ paginas['index.html'] = pagina({
 
     <section class="secao secao-alt" aria-labelledby="holding-titulo">
       <div class="container dupla">
-        <img src="/assets/img/protecao.jpg" alt="Mão segurando guarda-chuva sobre recortes de papel de família, casa e carro (imagem ilustrativa)" width="1200" height="800" loading="lazy">
+        ${foto('protecao.jpg', 'Mão segurando guarda-chuva sobre recortes de papel de família, casa e carro (imagem ilustrativa)', 1200, 800)}
         <div>
           <span class="sobretitulo">Por que uma holding</span>
           <h2 id="holding-titulo">Proteção, continuidade e decisões em família</h2>
@@ -355,7 +373,8 @@ paginas['index.html'] = pagina({
       '@context': 'https://schema.org', '@type': 'ItemList', name: 'Serviços da Mana Vivaro',
       itemListElement: SERVICOS.map(([, nome, texto], i) => ({
         '@type': 'ListItem', position: i + 1,
-        item: { '@type': 'Service', name: nome, description: texto, provider: { '@id': SITE + '/#organizacao' } }
+        item: { '@type': 'Service', name: nome, description: texto, provider: { '@id': SITE + '/#organizacao' },
+          ...(paginaServico(nome) ? { url: `${SITE}/servicos/${paginaServico(nome).slug}/` } : {}) }
       }))
     }],
     conteudo: `
@@ -388,12 +407,73 @@ paginas['index.html'] = pagina({
   });
 }
 
+// Páginas de cada serviço principal
+for (const s of servicos) {
+  const t = trilha([['/', 'Início'], ['/servicos/', 'Serviços'], [`/servicos/${s.slug}/`, s.nome]]);
+  const relacionadas = s.materias.map(porSlug).filter(Boolean);
+  paginas[`servicos/${s.slug}/index.html`] = pagina({
+    caminho: `/servicos/${s.slug}/`,
+    titulo: s.titulo,
+    descricao: s.descricao,
+    jsonld: [t.ld, {
+      '@context': 'https://schema.org', '@type': 'Service', name: s.nome, description: s.descricao, url: `${SITE}/servicos/${s.slug}/`,
+      serviceType: s.nome, provider: { '@id': SITE + '/#organizacao' }, areaServed: { '@type': 'Country', name: 'Brasil' }
+    }, {
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      mainEntity: s.faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
+    }],
+    conteudo: `
+    <section class="cabecalho-pagina">
+      <div class="container">
+        ${t.html}
+        <h1>${esc(s.titulo)}</h1>
+        <p>${esc(s.intro)}</p>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container dupla" style="align-items:start">
+        <div>
+          <span class="sobretitulo">O que está incluído</span>
+          <h2>Como a Mana Vivaro ajuda</h2>
+          <ul class="lista-check">
+            ${s.inclui.map(i => `<li>${esc(i)}</li>`).join('\n            ')}
+          </ul>
+          <a class="botao botao-primario" href="/contato/?assunto=${encodeURIComponent(s.nome === 'Planejamento sucessório' ? s.nome : 'Holding familiar')}">Agendar uma conversa</a>
+        </div>
+        <div>
+          <span class="sobretitulo">Como funciona</span>
+          <h2>Etapas</h2>
+          ${s.etapas.map(([titulo, texto], i) => `<div class="valor" style="margin-bottom:18px"><h3>${i + 1}. ${esc(titulo)}</h3><p>${esc(texto)}</p></div>`).join('\n          ')}
+        </div>
+      </div>
+      <div class="container">
+        <p class="legenda">Atos jurídicos e contábeis são realizados pelo advogado e pelo contador da família, com quem trabalhamos em conjunto.</p>
+      </div>
+    </section>
+    <section class="secao secao-alt faq">
+      <div class="container" style="max-width:820px">
+        <div class="secao-cabeca"><span class="sobretitulo">Dúvidas frequentes</span><h2>Perguntas sobre ${esc(s.nome.toLowerCase())}</h2></div>
+        ${s.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n        ')}
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container">
+        <div class="secao-cabeca"><span class="sobretitulo">Para ler antes</span><h2>Matérias relacionadas</h2></div>
+        <div class="grade grade-3">
+      ${relacionadas.map(cartaoMateria).join('\n      ')}
+        </div>
+      </div>
+    </section>`
+  });
+}
+
 // Sobre
 {
   const t = trilha([['/', 'Início'], ['/sobre/', 'Sobre']]);
   paginas['sobre/index.html'] = pagina({
     caminho: '/sobre/',
     titulo: 'Sobre a Mana Vivaro',
+    tituloSEO: 'Sobre nós',
     descricao: 'Conheça a Mana Vivaro, empresa familiar de administração de holdings, imóveis e empresas, com foco em transparência e continuidade do patrimônio.',
     jsonld: [t.ld, ORG],
     conteudo: `
@@ -413,7 +493,7 @@ paginas['index.html'] = pagina({
           <p>Nossa equipe se compromete a ajudar cada cliente a alcançar seus objetivos com eficiência e transparência: organizar o patrimônio, preparar a sucessão e criar regras que mantenham a família unida em torno das decisões.</p>
           <a class="botao botao-primario" href="/contato/">Fale conosco</a>
         </div>
-        <img src="/assets/img/familia-card.jpg" alt="Família de três gerações reunida em escritório corporativo (imagem ilustrativa)" width="1200" height="800" loading="lazy">
+        ${foto('familia-card.jpg', 'Família de três gerações reunida em escritório corporativo (imagem ilustrativa)', 1200, 800)}
       </div>
     </section>
     <section class="secao secao-alt">
@@ -516,6 +596,7 @@ for (const m of ordenadas) {
   paginas[`blog/${m.slug}/index.html`] = pagina({
     caminho: `/blog/${m.slug}/`,
     titulo: m.titulo,
+    tituloSEO: m.tituloSEO,
     descricao: m.descricao,
     tipo: 'article',
     imagem: m.imagem || 'og.jpg',
@@ -523,7 +604,8 @@ for (const m of ordenadas) {
       '@context': 'https://schema.org', '@type': 'BlogPosting',
       headline: m.titulo, description: m.descricao, inLanguage: 'pt-BR',
       image: `${SITE}/assets/img/${m.imagem || 'og.jpg'}`,
-      datePublished: m.data, dateModified: m.data,
+      datePublished: m.data, dateModified: m.atualizado || m.data,
+      ...(m.fontes ? { citation: m.fontes.map(([nome, url]) => ({ '@type': 'CreativeWork', name: nome, url })) } : {}),
       mainEntityOfPage: `${SITE}/blog/${m.slug}/`,
       author: { '@type': 'Organization', name: NOME, url: SITE + '/' },
       publisher: { '@id': SITE + '/#organizacao' },
@@ -534,9 +616,14 @@ for (const m of ordenadas) {
       ${t.html}
       <span class="tag">${esc(m.tema)}</span>
       <h1 style="margin-top:12px">${esc(m.titulo)}</h1>
-      <p class="meta">Publicado em <time datetime="${m.data}">${dataBR(m.data)}</time> · por ${NOME}</p>
-      ${m.imagem ? `<img class="capa" src="/assets/img/${m.imagem}" alt="${esc(m.imagemAlt)}" width="1200" height="800">` : placa(m, ' capa')}
-      ${m.corpo.trim()}
+      <p class="meta">Publicado em <time datetime="${m.data}">${dataBR(m.data)}</time>${m.atualizado && m.atualizado !== m.data ? ` · Atualizado em <time datetime="${m.atualizado}">${dataBR(m.atualizado)}</time>` : ''} · por ${NOME}</p>
+      ${m.imagem ? foto(m.imagem, m.imagemAlt, 1200, 800, { carregar: 'eager', classe: 'capa', sizes: '(max-width: 780px) 100vw, 720px' }) : placa(m, ' capa')}
+      ${m.corpo.trim()}${m.fontes ? `
+      <section class="fontes" aria-labelledby="fontes-${m.slug}">
+        <h2 id="fontes-${m.slug}">Fontes</h2>
+        <ul>${m.fontes.map(([nome, url]) => `<li><a href="${url}" rel="noopener">${esc(nome)}</a></li>`).join('')}</ul>
+        <p class="legenda">Links oficiais conferidos em ${dataBR(m.atualizado || m.data)}.</p>
+      </section>` : ''}
       <div class="chamada" style="margin-top:40px;padding:32px">
         <div><h2 style="font-size:1.4rem">Quer organizar o patrimônio da sua família?</h2><p>Converse com a Mana Vivaro sobre holding, sucessão e governança.</p></div>
         <a class="botao botao-ouro" href="/contato/">Fale conosco</a>
@@ -616,7 +703,8 @@ for (const [arq, html] of Object.entries(paginas)) {
 
 const urls = [
   ['/', '1.0'], ['/servicos/', '0.9'], ['/blog/', '0.8'], ['/sobre/', '0.6'], ['/contato/', '0.6'], ['/privacidade/', '0.2'],
-  ...ordenadas.map(m => [`/blog/${m.slug}/`, '0.7', m.data])
+  ...servicos.map(s => [`/servicos/${s.slug}/`, '0.8']),
+  ...ordenadas.map(m => [`/blog/${m.slug}/`, '0.7', m.atualizado || m.data])
 ];
 fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
