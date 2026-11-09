@@ -693,6 +693,8 @@ function redirecionar(destino) {
 paginas['privacy/index.html'] = redirecionar('/privacidade/');
 paginas['legal-notice/index.html'] = redirecionar('/privacidade/');
 paginas['blog-single-page-layout/index.html'] = redirecionar('/blog/');
+// Posts de exemplo do modelo da UOL (lorem ipsum) que o Google ainda tinha guardados
+for (let n = 1; n <= 6; n++) paginas[`blog-single-page-layout/blog-post-${n}/index.html`] = redirecionar('/blog/');
 
 // ---------- Gravação ----------
 for (const [arq, html] of Object.entries(paginas)) {
