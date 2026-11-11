@@ -22,7 +22,7 @@ const ordenadas = materias.map((m, i) => ({ ...m, i })).sort((a, b) => b.data.lo
 const porSlug = slug => ordenadas.find(m => m.slug === slug);
 
 // Fotos com versão WebP (gerada à parte em <nome>-<largura>.webp) e JPG de reserva.
-const LARGURAS = { 'hero.jpg': [800, 1536], 'familia-card.jpg': [600, 1200], 'protecao.jpg': [600, 1200], 'holding.jpg': [600, 1200], 'casa-card.jpg': [600, 1200], 'galpao.jpg': [600, 1200] };
+const LARGURAS = { 'custos-holding.jpg': [600, 1200], 'inventario-cartorio.jpg': [600, 1200], 'hero.jpg': [800, 1536], 'familia-card.jpg': [600, 1200], 'protecao.jpg': [600, 1200], 'holding.jpg': [600, 1200], 'casa-card.jpg': [600, 1200], 'galpao.jpg': [600, 1200] };
 function foto(arquivo, alt, largura, altura, { carregar = 'lazy', sizes = '(max-width: 760px) 100vw, 600px', classe = '', extra = '' } = {}) {
   const img = `<img${classe ? ` class="${classe}"` : ''} src="/assets/img/${arquivo}" alt="${esc(alt)}" width="${largura}" height="${altura}"${carregar === 'eager' ? ' fetchpriority="high"' : ' loading="lazy"'}${extra}>`;
   const ws = LARGURAS[arquivo];

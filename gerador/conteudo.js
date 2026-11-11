@@ -29,6 +29,8 @@ const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a 
 exports.materias = [
   {
     slug: 'quanto-custa-holding-familiar',
+    imagem: 'custos-holding.jpg',
+    imagemAlt: 'Ilustração de calculadora, pilhas de moedas e uma casa, representando os custos de uma holding familiar',
     titulo: 'Quanto custa abrir e manter uma holding familiar',
     tema: 'Holding familiar',
     data: '2026-11-11',
@@ -91,6 +93,8 @@ ${AVISO}`
   },
   {
     slug: 'inventario-em-cartorio',
+    imagem: 'inventario-cartorio.jpg',
+    imagemAlt: 'Ilustração de escritura com selo, caneta, chave e casa, representando o inventário em cartório',
     titulo: 'Inventário em cartório: quando é possível e como funciona',
     tituloSEO: 'Inventário em cartório: requisitos e passo a passo',
     tema: 'Sucessão',
