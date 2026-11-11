@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /gerador/
-Disallow: /area/
 
 Sitemap: https://manavivaro.com.br/sitemap.xml

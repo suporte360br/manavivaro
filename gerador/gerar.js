@@ -141,6 +141,7 @@ ${conteudo}
             <li><a href="mailto:${EMAIL}">${EMAIL}</a></li>
             <li>São Paulo – SP</li>
             <li><a href="/privacidade/">Política de privacidade</a></li>
+            <li>Holding empresarial: <a href="https://1972corp.com.br/">1972corp</a></li>
           </ul>
         </div>
       </div>
@@ -432,6 +433,17 @@ for (const s of servicos) {
       </div>
     </section>
     <section class="secao">
+      <div class="container">
+        <div class="secao-cabeca"><span class="sobretitulo">Para quem é</span><h2>Quando este serviço faz sentido</h2></div>
+        <ul class="lista-check" style="max-width:820px">
+          ${s.paraQuem.map(i => `<li>${esc(i)}</li>`).join('\n          ')}
+        </ul>
+        <div class="grade grade-3" style="margin-top:36px">
+          ${s.situacoes.map(([titulo, texto]) => `<div class="servico"><h3>${esc(titulo)}</h3><p>${esc(texto)}</p></div>`).join('\n          ')}
+        </div>
+      </div>
+    </section>
+    <section class="secao secao-alt">
       <div class="container dupla" style="align-items:start">
         <div>
           <span class="sobretitulo">O que está incluído</span>
@@ -451,13 +463,13 @@ for (const s of servicos) {
         <p class="legenda">Atos jurídicos e contábeis são realizados pelo advogado e pelo contador da família, com quem trabalhamos em conjunto.</p>
       </div>
     </section>
-    <section class="secao secao-alt faq">
+    <section class="secao faq">
       <div class="container" style="max-width:820px">
         <div class="secao-cabeca"><span class="sobretitulo">Dúvidas frequentes</span><h2>Perguntas sobre ${esc(s.nome.toLowerCase())}</h2></div>
         ${s.faq.map(([q, a]) => `<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join('\n        ')}
       </div>
     </section>
-    <section class="secao">
+    <section class="secao secao-alt">
       <div class="container">
         <div class="secao-cabeca"><span class="sobretitulo">Para ler antes</span><h2>Matérias relacionadas</h2></div>
         <div class="grade grade-3">
@@ -492,6 +504,7 @@ for (const s of servicos) {
           <h2>Assessoria e administração com olhar de família</h2>
           <p>A Mana Vivaro é uma empresa familiar dedicada a oferecer soluções em <strong>administração de holding</strong>, assessoria empresarial e administração de imóveis.</p>
           <p>Nossa equipe se compromete a ajudar cada cliente a alcançar seus objetivos com eficiência e transparência: organizar o patrimônio, preparar a sucessão e criar regras que mantenham a família unida em torno das decisões.</p>
+          <p>Nosso foco é a <strong>holding familiar</strong>. Se o que você procura é a holding de uma empresa, que reúne participações societárias e patrimônio imobiliário empresarial, conheça também a <a href="https://1972corp.com.br/">1972corp, holding empresarial em São Paulo</a>.</p>
           <a class="botao botao-primario" href="/contato/">Fale conosco</a>
         </div>
         ${foto('familia-card.jpg', 'Família de três gerações reunida em escritório corporativo (imagem ilustrativa)', 1200, 800)}
@@ -752,6 +765,7 @@ fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map(([u, p, d]) => `  <url><loc>${SITE}${u}</loc><lastmod>${d || HOJE}</lastmod><priority>${p}</priority></url>`).join('\n') +
   `\n</urlset>\n`);
-fs.writeFileSync(path.join(RAIZ, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /gerador/\nDisallow: /area/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+// /area/ não vai no Disallow: o Google precisa ler a página para respeitar o noindex dela
+fs.writeFileSync(path.join(RAIZ, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /gerador/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
 console.log(`${Object.keys(paginas).length} páginas geradas (css v=${V_CSS}, js v=${V_JS}).`);

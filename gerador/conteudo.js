@@ -15,6 +15,8 @@ const LEI = {
   stf796: ['STF, Tema 796 de repercussão geral (ITBI)', 'https://portal.stf.jus.br/jurisprudenciaRepercussao/tema.asp?num=796'],
   ctn: ['Código Tributário Nacional, arts. 36 e 37 (ITBI na integralização)', 'https://www.planalto.gov.br/ccivil_03/leis/l5172compilado.htm'],
   lc123: ['Lei Complementar 123/2006, art. 3º, § 4º (Simples Nacional)', 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm'],
+  lc224: ['Lei Complementar 224/2025 (presunção do lucro presumido)', 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp224.htm'],
+  rf2026: ['Receita Federal: tabela do IR de 2026', 'https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026'],
   cnj571: ['Resolução CNJ 571/2024 (inventário em cartório)', 'https://atos.cnj.jus.br/files/original2309432024083066d251371bc21.pdf'],
 };
 const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${texto}</a>`;
@@ -244,36 +246,75 @@ ${AVISO}`
     tema: 'Tributação',
     data: '2026-10-21',
     tituloSEO: 'Aluguel na pessoa física ou na holding: impostos',
-    atualizado: '2026-10-31',
-    fontes: [LEI.l15270, LEI.l9249, LEI.cf, LEI.stf796, LEI.lc214],
-    descricao: 'Compare a tributação de aluguéis na pessoa física e na holding, o ITBI na integralização de imóveis e as mudanças da reforma tributária.',
+    atualizado: '2026-11-11',
+    fontes: [LEI.rf2026, LEI.l15270, LEI.lc224, LEI.l9249, LEI.cf, LEI.stf796, LEI.lc214],
+    descricao: 'Aluguel na pessoa física ou na holding: simulação com R$ 20 mil por mês, IR de 2026, lucro presumido, dividendos, ITBI e IBS/CBS a partir de 2027.',
     corpo: `
-<p>Para muitas famílias, a renda de aluguel é o principal motivo para pensar em uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>. A comparação, porém, precisa ser feita com números da própria família, e não com promessas genéricas de economia.</p>
+<p>Para muitas famílias, a renda de aluguel é o principal motivo para pensar em uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>. A comparação, porém, precisa ser feita com os números da própria família, e não com promessas genéricas de economia. Abaixo explicamos as regras e fazemos uma simulação completa.</p>
 
-<h2>Na pessoa física</h2>
-<p>O aluguel recebido de pessoa física é tributado mensalmente pelo carnê-leão, e o de pessoa jurídica sofre retenção na fonte. Em ambos os casos vale a tabela progressiva do Imposto de Renda, que chega a <strong>27,5%</strong> para rendas mais altas. Podem ser deduzidos IPTU, condomínio e taxa de administração pagos pelo locador.</p>
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#pessoa-fisica">Aluguel na pessoa física</a></li>
+<li><a href="#holding">Aluguel na holding (lucro presumido)</a></li>
+<li><a href="#simulacao">Simulação: R$ 20 mil por mês</a></li>
+<li><a href="#entrada">Custos para levar os imóveis à holding</a></li>
+<li><a href="#reforma">O que muda com a reforma tributária</a></li>
+<li><a href="#perguntas">Perguntas frequentes</a></li>
+</ol></nav>
 
-<h2>Na holding (lucro presumido)</h2>
-<p>No lucro presumido, a receita de aluguel tem presunção de 32% para IRPJ e CSLL. Somando PIS e Cofins no regime cumulativo, a carga federal costuma ficar <strong>em torno de 11% a 15% da receita</strong>, dependendo do valor, em holdings de pequeno e médio porte (o adicional de IRPJ incide sobre a parcela do lucro presumido que passar de R$ 20 mil por mês).</p>
-<p>Depois disso, os lucros são distribuídos aos sócios. Desde janeiro de 2026, a <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15270.htm" rel="noopener">Lei 15.270/2025</a> prevê que, quando uma mesma empresa paga a uma mesma pessoa física mais de R$ 50 mil em lucros e dividendos no mês, há retenção de 10% de IR sobre o valor total pago, além de uma tributação mínima anual para rendas muito altas. Isso precisa entrar na conta.</p>
+<h2 id="pessoa-fisica">Aluguel na pessoa física</h2>
+<p>O aluguel recebido de pessoa física é tributado mensalmente pelo carnê-leão, e o recebido de pessoa jurídica sofre retenção na fonte. Em ambos os casos vale a tabela progressiva do Imposto de Renda: em 2026, acima de R$ 4.664,68 por mês a alíquota é de <strong>27,5%</strong>, com parcela a deduzir de R$ 908,73 (${link('rf2026', 'tabela da Receita Federal')}). A redução criada para quem ganha até R$ 7.350 por mês não alcança rendas maiores.</p>
+<p>Podem ser deduzidos do aluguel o IPTU, o condomínio e a taxa de administração pagos pelo locador. Quando o imóvel é bem comum do casal, o aluguel pode ser dividido entre os cônjuges na declaração, o que reduz a faixa de cada um.</p>
 
-<h2>Levar os imóveis para a holding</h2>
+<h2 id="holding">Aluguel na holding (lucro presumido)</h2>
+<p>A holding que aluga imóveis normalmente fica no lucro presumido. A receita de aluguel tem presunção de 32% para IRPJ e CSLL, e o PIS e a Cofins são cumulativos:</p>
+<ul>
+<li><strong>IRPJ:</strong> 15% sobre 32% da receita, mais adicional de 10% sobre a parte do lucro presumido que passar de R$ 20 mil por mês;</li>
+<li><strong>CSLL:</strong> 9% sobre 32% da receita;</li>
+<li><strong>PIS e Cofins:</strong> 0,65% e 3% sobre a receita.</li>
+</ul>
+<p>Sem o adicional, a carga federal fica em <strong>11,33% da receita</strong>; com o adicional, pode chegar a cerca de 14,5%. Holdings com receita acima de R$ 5 milhões por ano têm ainda um acréscimo de 10% na presunção sobre o que exceder esse valor (${link('lc224', 'LC 224/2025')}), regra que está sendo questionada na Justiça.</p>
+<p>Depois disso, o lucro é distribuído aos sócios. Desde janeiro de 2026, a ${link('l15270', 'Lei 15.270/2025')} prevê que, quando uma mesma empresa paga a uma mesma pessoa física mais de R$ 50 mil em lucros e dividendos no mês, há retenção de 10% de IR sobre o valor total pago. A partir do ano-calendário de 2026, quem recebe mais de R$ 600 mil por ano somando todos os rendimentos também fica sujeito a uma tributação mínima anual.</p>
+
+<h2 id="simulacao">Simulação: R$ 20 mil de aluguel por mês</h2>
+<p>Imagine uma família com receita de aluguel de <strong>R$ 20.000 por mês</strong> (R$ 240.000 por ano), já descontadas as despesas dedutíveis, e sem outras rendas que mudem a faixa do IR. Valores de 2026, arredondados:</p>
+<div class="rolagem"><table class="tabela">
+<thead><tr><th>Cenário</th><th>Imposto por ano</th><th>Carga sobre a receita</th></tr></thead>
+<tbody>
+<tr><td>Pessoa física, um único titular<br><small>(R$ 20.000 × 27,5% − R$ 908,73) × 12</small></td><td>R$ 55.095</td><td>23,0%</td></tr>
+<tr><td>Pessoa física, aluguel dividido entre o casal<br><small>2 × (R$ 10.000 × 27,5% − R$ 908,73) × 12</small></td><td>R$ 44.190</td><td>18,4%</td></tr>
+<tr><td>Holding no lucro presumido<br><small>IRPJ R$ 11.520 + CSLL R$ 6.912 + PIS R$ 1.560 + Cofins R$ 7.200</small></td><td>R$ 27.192</td><td>11,3%</td></tr>
+</tbody></table></div>
+<p>Na holding, os R$ 212.808 que sobram podem ser distribuídos aos sócios. Nesse porte, cada sócio recebe bem menos que R$ 50 mil por mês, então não há a retenção de 10% sobre dividendos, e a renda total fica abaixo de R$ 600 mil por ano.</p>
+<p>A diferença, de R$ 17 mil a R$ 28 mil por ano, ainda precisa pagar <strong>a contabilidade da holding</strong> e diluir os <strong>custos de entrada</strong> (ITBI e cartório). Por isso, para receitas menores a vantagem tributária costuma desaparecer, e a holding passa a valer mais pela sucessão e pela gestão do que pelo imposto.</p>
+<p class="legenda">Simulação simplificada, com valores de 2026. Não considera deduções do IR além das despesas do imóvel, outras rendas da família nem o IBS e a CBS, que começam a valer em 2027.</p>
+
+<h2 id="entrada">Custos para levar os imóveis à holding</h2>
 <ul>
 <li><strong>Imposto de Renda:</strong> a pessoa física pode transferir os imóveis pelo valor que consta na sua declaração (${link('l9249', 'art. 23 da Lei 9.249/1995')}), sem apurar ganho de capital nesse momento.</li>
 <li><strong>ITBI:</strong> a ${link('cf', 'Constituição')} prevê imunidade na integralização de capital, mas ela não se aplica quando a atividade preponderante da empresa é imobiliária (compra, venda ou locação). Além disso, o STF decidiu (${link('stf796', 'Tema 796')}) que a imunidade não alcança o valor dos imóveis que exceder o capital integralizado. Muitas holdings de aluguel acabam pagando ITBI; a regra exata depende do município.</li>
-<li><strong>Custos de cartório e registro</strong> também entram na conta.</li>
+<li><strong>Cartório e registro</strong> da transferência de cada imóvel também entram na conta.</li>
 </ul>
 
-<h2>A reforma tributária e os aluguéis</h2>
-<p>Com a ${link('lc214', 'Lei Complementar 214/2025')}, a locação de imóveis passa a ter IBS e CBS, os novos tributos sobre consumo, com <strong>redução de 70% da alíquota</strong> (art. 261) e transição gradual a partir de 2027. Pessoas físicas também passam a ser contribuintes quando, no ano anterior, a receita de aluguéis passar de R$ 240 mil e envolver mais de 3 imóveis (<a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm" rel="noopener">art. 251 da LC 214/2025</a>). Esse ponto pode mudar a comparação entre pessoa física e holding: vale refazer a simulação.</p>
+<h2 id="reforma">O que muda com a reforma tributária</h2>
+<p>Com a ${link('lc214', 'Lei Complementar 214/2025')}, a locação de imóveis passa a ter IBS e CBS, os novos tributos sobre consumo, com <strong>redução de 70% da alíquota</strong> (art. 261) e transição gradual a partir de 2027. Na locação residencial, a lei permite ainda descontar da base de cálculo um <strong>redutor social de R$ 600 por mês por imóvel</strong> (art. 260).</p>
+<p>A holding que aluga imóveis paga IBS e CBS sobre os aluguéis. A pessoa física só passa a pagar quando, no ano anterior, a receita de aluguéis passar de R$ 240 mil e envolver mais de 3 imóveis (art. 251). Esse ponto pode mudar a comparação: famílias com poucos imóveis podem continuar fora do IBS e da CBS na pessoa física. Vale refazer a simulação quando as alíquotas definitivas forem publicadas.</p>
+
+<h2 id="perguntas">Perguntas frequentes</h2>
+<h3>Holding sempre paga menos imposto sobre aluguel?</h3>
+<p>Não. A carga da holding no lucro presumido costuma ser menor que a da pessoa física na faixa de 27,5%, mas os custos de contabilidade, de entrada e, a partir de 2027, o IBS e a CBS podem reduzir ou eliminar essa vantagem.</p>
+<h3>Vale a pena para quem recebe pouco aluguel?</h3>
+<p>Geralmente não pelo imposto. Com aluguéis baixos, a pessoa física fica em faixas menores da tabela e a economia não cobre os custos da holding. Nesses casos, a holding pode fazer sentido pela <a href="/blog/holding-x-inventario-x-testamento/">sucessão</a>, não pela tributação.</p>
+<h3>Os dividendos da holding pagam IR?</h3>
+<p>Em regra, não. Desde 2026 há retenção de 10% apenas quando uma mesma empresa paga mais de R$ 50 mil por mês a um mesmo sócio, e há uma tributação mínima anual para quem tem rendimentos totais acima de R$ 600 mil por ano.</p>
 
 <h2>Como decidir</h2>
 <ol>
 <li>Levante a receita anual de aluguéis e as despesas dedutíveis.</li>
-<li>Simule o IR na pessoa física e a carga na holding, incluindo a distribuição de lucros.</li>
+<li>Simule o IR na pessoa física (sozinho e dividido com o cônjuge, se for o caso) e a carga na holding, incluindo a distribuição de lucros.</li>
 <li>Some os custos de entrada (ITBI, cartório) e de manutenção (contabilidade).</li>
-<li>Considere os objetivos que não são tributários: sucessão, governança e gestão.</li>
+<li>Considere os objetivos que não são tributários: <a href="/servicos/planejamento-sucessorio/">sucessão</a>, governança e gestão.</li>
 </ol>
+<p>Se quiser ajuda para fazer essa conta com os números da sua família, conheça a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a> da Mana Vivaro.</p>
 ${AVISO}`
   },
   {
@@ -362,6 +403,26 @@ exports.servicos = [
     titulo: 'Administração de holding familiar',
     descricao: 'Administração do dia a dia da holding familiar: rotinas societárias, controle financeiro, distribuição de lucros e prestação de contas aos sócios.',
     intro: 'Depois que a holding está constituída, começa o trabalho que garante que ela funcione: manter as rotinas em dia, separar o dinheiro da família e o da sociedade, e dar a todos os sócios a mesma informação.',
+    paraQuem: [
+      "Famílias que já constituíram uma holding e não têm quem cuide da rotina dela",
+      "Holdings com vários imóveis alugados, em que contratos, reajustes, IPTU e condomínios se acumulam",
+      "Famílias em que só um dos sócios conhece os números e os demais querem acompanhar com clareza",
+      "Patriarcas que querem passar a gestão do dia a dia sem perder o controle das decisões"
+    ],
+    situacoes: [
+      [
+        "Holding criada, mas parada",
+        "A sociedade existe no papel, mas as contas continuam misturadas com as da família e ninguém sabe quanto o patrimônio rende. Organizamos o fluxo de receitas e despesas e passamos a prestar contas aos sócios."
+      ],
+      [
+        "Muitos imóveis, pouca organização",
+        "Contratos vencendo, reajustes esquecidos e documentos espalhados. Montamos o calendário de vencimentos e o controle por imóvel, para que nada dependa da memória de uma pessoa."
+      ],
+      [
+        "Sócios que querem transparência",
+        "Irmãos ou herdeiros que recebem lucros sem entender a origem dos números. Relatórios periódicos e reuniões com ata dão a todos a mesma informação."
+      ]
+    ],
     inclui: [
       'Organização das rotinas societárias: reuniões de sócios, atas e calendário de obrigações',
       'Controle de receitas e despesas da holding, como aluguéis, IPTU, condomínios e manutenção',
@@ -377,8 +438,10 @@ exports.servicos = [
     faq: [
       ['A Mana Vivaro faz a contabilidade da holding?', 'Não. A contabilidade e as obrigações fiscais ficam com o contador da família. Nós organizamos as informações, acompanhamos os prazos e fazemos a ponte com ele.'],
       ['Preciso já ter uma holding para contratar?', 'Não. Se a holding ainda não existe, começamos pelo diagnóstico do patrimônio e pelo planejamento, junto com o advogado e o contador da família.'],
+      ["Com que frequência os sócios recebem relatórios?","A periodicidade é combinada com a família. O mais comum é um resumo mensal das receitas e despesas e uma reunião de sócios por semestre, com ata."],
+      ["A administração inclui os imóveis da holding?","Sim. Acompanhamos contratos, reajustes, cobranças, IPTU, condomínios e manutenção dos imóveis da holding, sempre com prestação de contas aos sócios."],
     ],
-    materias: ['o-que-e-holding-familiar', 'aluguel-pessoa-fisica-ou-holding', 'organizacao-financeira-da-familia-empresaria'],
+    materias: ['o-que-e-holding-familiar', 'aluguel-pessoa-fisica-ou-holding', 'organizacao-financeira-da-familia-empresaria', 'contrato-social-da-holding-familiar'],
   },
   {
     slug: 'planejamento-sucessorio',
@@ -386,6 +449,26 @@ exports.servicos = [
     titulo: 'Planejamento sucessório para famílias',
     descricao: 'Planejamento sucessório em vida: mapeamento do patrimônio, comparação entre holding, inventário e testamento e coordenação com advogado e contador.',
     intro: 'Planejar a sucessão em vida permite que a família decida com calma como o patrimônio vai passar para a próxima geração, em vez de deixar tudo para um inventário depois do falecimento.',
+    paraQuem: [
+      "Casais com imóveis, aplicações ou participações em empresas que querem decidir em vida como será a sucessão",
+      "Famílias com filhos de casamentos diferentes, em que regras claras evitam conflitos",
+      "Herdeiros que já viveram um inventário longo e querem poupar a próxima geração",
+      "Empresários que precisam garantir a continuidade da empresa familiar"
+    ],
+    situacoes: [
+      [
+        "Patrimônio concentrado em imóveis",
+        "Um inventário pode travar a venda e o aluguel dos imóveis por meses ou anos. Comparamos a holding com o testamento e a doação em vida para escolher o caminho que mantém a gestão funcionando."
+      ],
+      [
+        "Herdeiros com perfis diferentes",
+        "Um filho quer vender, outro quer manter. Cláusulas na doação e regras no acordo de sócios definem antes como essas decisões serão tomadas."
+      ],
+      [
+        "Preocupação com o custo do ITCMD",
+        "Com a reforma tributária, os estados estão adotando alíquotas progressivas. Levantamos o custo de cada alternativa para a família decidir o momento da transmissão com números na mesa."
+      ]
+    ],
     inclui: [
       'Mapeamento do patrimônio, dos rendimentos e dos objetivos de cada membro da família',
       'Comparação entre os caminhos possíveis: holding familiar, testamento, doação em vida e inventário',
@@ -402,8 +485,10 @@ exports.servicos = [
     faq: [
       ['Planejamento sucessório é só para famílias muito ricas?', 'Não. Toda família com patrimônio passa pela sucessão. Para patrimônios menores, testamento e inventário em cartório podem bastar; o planejamento ajuda a escolher o caminho certo.'],
       ['O planejamento evita o pagamento de ITCMD?', 'Não. O imposto continua devido, mas o planejamento permite escolher o momento da transmissão e organizar os custos, em vez de pagá-los às pressas em um inventário.'],
+      ["Quanto tempo leva um planejamento sucessório?","Depende do tamanho do patrimônio e de quantas pessoas precisam concordar. A conversa em família e o mapa do patrimônio costumam vir primeiro; a implantação acompanha o ritmo do advogado, do contador e dos cartórios."],
+      ["Preciso fazer holding para planejar a sucessão?","Não. A holding é uma das alternativas. Para alguns patrimônios, testamento e doações com cláusulas resolvem melhor; o planejamento serve justamente para comparar."],
     ],
-    materias: ['holding-x-inventario-x-testamento', 'clausulas-de-protecao-na-doacao-de-quotas', 'o-que-e-holding-familiar'],
+    materias: ['holding-x-inventario-x-testamento', 'clausulas-de-protecao-na-doacao-de-quotas', 'o-que-e-holding-familiar', 'contrato-social-da-holding-familiar'],
   },
   {
     slug: 'governanca-familiar',
@@ -411,6 +496,26 @@ exports.servicos = [
     titulo: 'Governança familiar e acordo de sócios',
     descricao: 'Governança para famílias empresárias: acordo de sócios, protocolo familiar, conselho de família e preparação da próxima geração.',
     intro: 'Boa parte dos conflitos em torno de um patrimônio familiar vem da falta de regras combinadas antes. Governança é organizar essas regras e criar momentos para a família decidir junto.',
+    paraQuem: [
+      "Famílias com mais de um herdeiro na sociedade ou na empresa familiar",
+      "Empresas familiares em transição da primeira para a segunda geração",
+      "Holdings em que cônjuges, genros e noras começam a participar das decisões",
+      "Famílias que já tiveram desentendimentos sobre o patrimônio e querem regras antes do próximo"
+    ],
+    situacoes: [
+      [
+        "Decisões que dependem de uma só pessoa",
+        "Quando só o patriarca ou a matriarca decide, a família fica sem rumo se essa pessoa se afastar. O conselho de família distribui a informação e prepara quem vem depois."
+      ],
+      [
+        "Herdeiro que quer sair da sociedade",
+        "Sem regra de saída, discutir quanto vale a parte de cada um vira briga. O acordo de sócios define antes o direito de preferência e a forma de calcular o valor das quotas."
+      ],
+      [
+        "Parentes trabalhando na empresa",
+        "Quem trabalha recebe salário ou pró-labore; quem é sócio recebe lucros. O protocolo familiar deixa claro esse limite e os critérios para um membro da família assumir a gestão."
+      ]
+    ],
     inclui: [
       'Apoio na definição das regras do acordo de sócios: administração, preferência, saída e distribuição de lucros',
       'Construção do protocolo familiar com os valores e as expectativas da família',
@@ -425,7 +530,9 @@ exports.servicos = [
     faq: [
       ['Qual a diferença entre acordo de sócios e protocolo familiar?', 'O acordo de sócios é um contrato com regras jurídicas sobre a sociedade. O protocolo familiar registra valores e expectativas da família e orienta o acordo.'],
       ['A governança só faz sentido depois de criar a holding?', 'Não. As regras de convivência podem e devem ser discutidas antes, para que a estrutura já nasça com elas.'],
+      ["Quem participa do conselho de família?","A família define. Em geral participam os sócios e os herdeiros adultos; cônjuges podem participar como ouvintes, conforme as regras do protocolo familiar."],
+      ["O protocolo familiar tem valor jurídico?","Ele é sobretudo um documento de valores e combinados. As regras que precisam valer juridicamente vão para o acordo de sócios e o contrato social, revisados pelo advogado da família."],
     ],
-    materias: ['governanca-na-empresa-familiar', 'clausulas-de-protecao-na-doacao-de-quotas', 'organizacao-financeira-da-familia-empresaria'],
+    materias: ['governanca-na-empresa-familiar', 'clausulas-de-protecao-na-doacao-de-quotas', 'organizacao-financeira-da-familia-empresaria', 'contrato-social-da-holding-familiar'],
   },
 ];
