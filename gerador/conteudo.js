@@ -13,6 +13,8 @@ const LEI = {
   l15270: ['Lei 15.270/2025 (IR sobre lucros e dividendos)', 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15270.htm'],
   l9249: ['Lei 9.249/1995, art. 23 (integralização de capital)', 'https://www.planalto.gov.br/ccivil_03/leis/l9249.htm'],
   stf796: ['STF, Tema 796 de repercussão geral (ITBI)', 'https://portal.stf.jus.br/jurisprudenciaRepercussao/tema.asp?num=796'],
+  ctn: ['Código Tributário Nacional, arts. 36 e 37 (ITBI na integralização)', 'https://www.planalto.gov.br/ccivil_03/leis/l5172compilado.htm'],
+  lc123: ['Lei Complementar 123/2006, art. 3º, § 4º (Simples Nacional)', 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm'],
   cnj571: ['Resolução CNJ 571/2024 (inventário em cartório)', 'https://atos.cnj.jus.br/files/original2309432024083066d251371bc21.pdf'],
 };
 const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${texto}</a>`;
@@ -20,6 +22,80 @@ const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${text
 const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a análise de um advogado e de um contador para o caso concreto da sua família. Regras tributárias mudam com frequência: confira a legislação em vigor antes de decidir.</p>`;
 
 exports.materias = [
+  {
+    slug: 'contrato-social-da-holding-familiar',
+    titulo: 'Contrato social da holding familiar: o que ele deve contemplar',
+    tituloSEO: 'Contrato da holding familiar: cláusulas essenciais',
+    tema: 'Holding familiar',
+    data: '2026-11-10',
+    fontes: [LEI.cc, LEI.cf, LEI.ctn, LEI.stf796, LEI.l9249, LEI.lc123],
+    descricao: 'Checklist do contrato social da holding familiar: objeto, capital, administração, quóruns, cessão de quotas, sucessão, doação com cláusulas, ITBI e o passo a passo da implantação.',
+    corpo: `
+<p>A <a href="/blog/o-que-e-holding-familiar/">holding familiar</a> só cumpre o que promete se o <strong>contrato social</strong> for bem escrito. É ele que define quem manda, como se decide, o que acontece quando alguém morre, se divorcia ou quer sair. Um contrato genérico, copiado de modelo, costuma ser a origem dos conflitos que a holding deveria evitar.</p>
+
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#antes">Antes do contrato: o protocolo da família</a></li>
+<li><a href="#clausulas">As cláusulas que não podem faltar</a></li>
+<li><a href="#doacao">A doação das quotas e suas cláusulas</a></li>
+<li><a href="#itbi">ITBI: o que esperar na integralização dos imóveis</a></li>
+<li><a href="#cuidados">Cuidados que costumam ser esquecidos</a></li>
+</ol></nav>
+
+<h2 id="antes">Antes do contrato: o protocolo da família</h2>
+<p>O contrato é o último passo, não o primeiro. Um bom protocolo interno segue quatro etapas:</p>
+<ol>
+<li><strong>Diagnóstico:</strong> levantar todos os bens (imóveis, empresas, aplicações), dívidas, rendimentos, regime de bens dos casamentos e a situação de cada herdeiro.</li>
+<li><strong>Exposição do planejamento:</strong> apresentar à família o desenho proposto, com números: custos de abertura, impostos na transferência e na doação, e a tributação dos rendimentos depois.</li>
+<li><strong>Reunião de sócios:</strong> discutir e decidir as regras de convivência: quem administra, como os lucros são usados, como um herdeiro entra ou sai.</li>
+<li><strong>Implantação ("como vai ser"):</strong> só então redigir o contrato social e o <a href="/blog/governanca-na-empresa-familiar/">acordo de sócios</a>, registrar a empresa, transferir os bens e fazer as doações.</li>
+</ol>
+<p>Nessa fase também se definem os objetivos. Em muitas famílias, a próxima geração não vai "herdar para vender", e sim <strong>administrar e profissionalizar</strong> o patrimônio. O contrato precisa refletir isso.</p>
+
+<h2 id="clausulas">As cláusulas que não podem faltar</h2>
+<div class="rolagem"><table class="tabela">
+<thead><tr><th>Cláusula</th><th>O que definir</th></tr></thead>
+<tbody>
+<tr><td><strong>Objeto social</strong></td><td>As atividades da empresa: participação em outras sociedades, administração de bens próprios, locação. Precisa corresponder ao que a holding vai fazer de fato (veja o ponto sobre ITBI abaixo).</td></tr>
+<tr><td><strong>Capital social e integralização</strong></td><td>Quais bens entram, por qual valor (o declarado no Imposto de Renda ou o de mercado, com efeitos diferentes no ganho de capital futuro, ${link('l9249', 'Lei 9.249/1995, art. 23')}) e a divisão das quotas.</td></tr>
+<tr><td><strong>Administração</strong></td><td>Quem administra, por quanto tempo, com quais poderes e limites. Atos relevantes (vender imóvel, dar garantia, contrair dívida) devem exigir aprovação dos sócios. O contrato pode permitir administrador não sócio, o que abre espaço para a profissionalização.</td></tr>
+<tr><td><strong>Deliberações e quóruns</strong></td><td>Que decisões exigem maioria simples, maioria qualificada ou unanimidade. Os mínimos estão no Código Civil, mas a família pode exigir quóruns maiores para os temas sensíveis.</td></tr>
+<tr><td><strong>Lucros</strong></td><td>Política de distribuição e de reinvestimento, reserva para manutenção dos imóveis e quem recebe os lucros quando as quotas estão com usufruto.</td></tr>
+<tr><td><strong>Cessão de quotas</strong></td><td>Restrições à venda para terceiros e <strong>direito de preferência</strong> dos demais sócios. Sem regra no contrato, o ${link('cc', 'art. 1.057 do Código Civil')} permite a cessão a estranhos se não houver oposição de mais de um quarto do capital.</td></tr>
+<tr><td><strong>Falecimento de sócio</strong></td><td>Se os herdeiros entram automaticamente na sociedade ou se as quotas são liquidadas, e como.</td></tr>
+<tr><td><strong>Cônjuges e companheiros</strong></td><td>Que eles não se tornam sócios por causa do casamento e como fica a participação em caso de separação.</td></tr>
+<tr><td><strong>Retirada e exclusão</strong></td><td>Hipóteses de saída, exclusão por justa causa (que precisa estar prevista, ${link('cc', 'art. 1.085 do Código Civil')}) e o <strong>critério de apuração de haveres</strong>: como se calcula o valor das quotas e em quantas parcelas é pago, para não descapitalizar a holding.</td></tr>
+<tr><td><strong>Usufruto de quotas</strong></td><td>Se o voto fica com o usufrutuário (os pais) ou com o nu-proprietário (os filhos), em todos os temas ou só em alguns.</td></tr>
+<tr><td><strong>Solução de conflitos</strong></td><td>Mediação familiar antes de qualquer processo e, se for o caso, arbitragem.</td></tr>
+</tbody></table></div>
+<p>Temas mais detalhados, como regras de convivência, conselho de família e critérios para um herdeiro trabalhar na empresa, costumam ir para o acordo de sócios, que complementa o contrato.</p>
+
+<h2 id="doacao">A doação das quotas e suas cláusulas</h2>
+<p>Depois de constituída a holding, os pais costumam doar as quotas aos filhos. Na escritura de doação entram as cláusulas de proteção, explicadas em detalhe em <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">cláusulas que protegem o patrimônio na doação de quotas</a>:</p>
+<ul>
+<li><strong>Usufruto vitalício:</strong> os pais seguem recebendo os lucros e, se previsto, decidindo.</li>
+<li><strong>Incomunicabilidade:</strong> as quotas não entram na partilha em caso de divórcio do herdeiro.</li>
+<li><strong>Reversão:</strong> se o herdeiro falecer antes do doador, as quotas voltam para quem doou (${link('cc', 'art. 547 do Código Civil')}).</li>
+<li><strong>Inalienabilidade e impenhorabilidade:</strong> o herdeiro não vende as quotas sem autorização, e elas não respondem por dívidas dele.</li>
+</ul>
+<p>Quando a família quer destinar um bem ao <strong>uso exclusivo de um herdeiro</strong>, por exemplo o imóvel em que ele mora, isso também deve ficar escrito: no contrato, no acordo de sócios ou num contrato de comodato com a holding, para não gerar cobranças dos demais sócios no futuro.</p>
+<p>O ITCMD incide sobre a doação. Um <strong>seguro de vida</strong> com os herdeiros como beneficiários é um bom complemento: o capital segurado não entra em inventário nem é considerado herança (${link('cc', 'art. 794 do Código Civil')}), e pode dar liquidez para pagar impostos e custos da sucessão.</p>
+
+<h2 id="itbi">ITBI: o que esperar na integralização dos imóveis</h2>
+<p>A Constituição prevê que o ITBI não incide quando o imóvel é usado para integralizar o capital de uma empresa (${link('cf', 'art. 156, § 2º, I')}). É uma <strong>imunidade</strong>, mas com uma exceção importante: ela não vale se a atividade preponderante da empresa for a compra, venda ou locação de imóveis.</p>
+<p>O ${link('ctn', 'Código Tributário Nacional (art. 37)')} considera preponderante a atividade que gera <strong>mais de 50% da receita operacional</strong> nos dois anos anteriores e nos dois posteriores à aquisição. Para uma empresa nova, contam os três primeiros anos. Além disso, o STF decidiu que a imunidade só alcança o valor efetivamente usado para integralizar o capital (${link('stf796', 'Tema 796')}).</p>
+<p>Na prática, uma holding patrimonial cuja renda vem de aluguéis dificilmente escapa do ITBI. Em São Paulo, a prefeitura costuma negar a imunidade nesses casos, e a chance de obtê-la é muito baixa. O correto é <strong>incluir o ITBI no custo do planejamento</strong>. Escrever um objeto social que não corresponde à atividade real não resolve: a análise é feita pela receita efetiva, e a diferença pode gerar autuação.</p>
+<p>A alíquota e a base de cálculo variam por município (em São Paulo, 3%). Por isso, quem tem imóveis em várias cidades precisa consultar a regra de cada uma.</p>
+
+<h2 id="cuidados">Cuidados que costumam ser esquecidos</h2>
+<ul>
+<li><strong>Familiar com empresa no Simples Nacional:</strong> se um sócio da holding também tiver empresa no Simples e participar com mais de 10% do capital da holding, a empresa dele pode ser excluída do Simples quando a receita somada das duas passar do limite (${link('lc123', 'LC 123/2006, art. 3º, § 4º')}). Vale simular antes de definir as participações.</li>
+<li><strong>Regime de bens dos casamentos:</strong> pode alterar quem é dono de quê antes mesmo da holding existir.</li>
+<li><strong>Dívidas anteriores:</strong> transferir bens para fugir de credores pode ser anulado como fraude.</li>
+<li><strong>Revisão periódica:</strong> casamentos, nascimentos, novos imóveis e mudanças na lei (como a <a href="/blog/holding-x-inventario-x-testamento/">reforma tributária</a>) pedem revisão do contrato e do acordo de sócios.</li>
+</ul>
+<p>Se a sua família está nessa etapa, veja como funciona o nosso <a href="/servicos/planejamento-sucessorio/">planejamento sucessório</a> e a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a>.</p>
+${AVISO}`
+  },
   {
     slug: 'o-que-e-holding-familiar',
     titulo: 'O que é uma holding familiar e quando ela faz sentido',
