@@ -22,7 +22,7 @@ const ordenadas = materias.map((m, i) => ({ ...m, i })).sort((a, b) => b.data.lo
 const porSlug = slug => ordenadas.find(m => m.slug === slug);
 
 // Fotos com versão WebP (gerada à parte em <nome>-<largura>.webp) e JPG de reserva.
-const LARGURAS = { 'hero.jpg': [800, 1536], 'familia-card.jpg': [600, 1200], 'protecao.jpg': [600, 1200] };
+const LARGURAS = { 'hero.jpg': [800, 1536], 'familia-card.jpg': [600, 1200], 'protecao.jpg': [600, 1200], 'holding.jpg': [600, 1200], 'casa-card.jpg': [600, 1200], 'galpao.jpg': [600, 1200] };
 function foto(arquivo, alt, largura, altura, { carregar = 'lazy', sizes = '(max-width: 760px) 100vw, 600px', classe = '', extra = '' } = {}) {
   const img = `<img${classe ? ` class="${classe}"` : ''} src="/assets/img/${arquivo}" alt="${esc(alt)}" width="${largura}" height="${altura}"${carregar === 'eager' ? ' fetchpriority="high"' : ' loading="lazy"'}${extra}>`;
   const ws = LARGURAS[arquivo];
@@ -49,6 +49,7 @@ const MENU = [
   ['/servicos/', 'Serviços'],
   ['/sobre/', 'Sobre'],
   ['/blog/', 'Blog'],
+  ['/area/', 'Área do cliente'],
 ];
 
 function pagina({ caminho, titulo, tituloSEO, descricao, conteudo, imagem = 'og.jpg', tipo = 'website', jsonld = [], semIndex = false, preload = '' }) {
@@ -666,6 +667,45 @@ for (const m of ordenadas) {
   });
 }
 
+// Área do cliente (login por código SMS; dados no Supabase do AXIA, tabelas mv_*; ver Projetos IA/manavivaro-backend)
+paginas['area/index.html'] = pagina({
+  caminho: '/area/',
+  titulo: 'Área do cliente',
+  descricao: 'Área restrita aos clientes cadastrados do Mana Vivaro.',
+  semIndex: true,
+  conteudo: `
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <h1>Área do cliente</h1>
+        <p>Acesso restrito aos clientes cadastrados do Mana Vivaro.</p>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container" style="max-width:560px" id="area-login">
+        <form class="formulario" id="form-celular">
+          <label>Celular com DDD<input name="celular" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></label>
+          <button class="botao botao-primario" type="submit">Receber código por SMS</button>
+          <small>Enviaremos um código de 6 dígitos para o celular cadastrado.</small>
+        </form>
+        <form class="formulario oculto" id="form-codigo" style="margin-top:16px">
+          <label>Código recebido por SMS<input name="codigo" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></label>
+          <button class="botao botao-primario" type="submit">Entrar</button>
+          <button class="botao botao-contorno" type="button" id="trocar-celular">Usar outro celular</button>
+        </form>
+        <p id="area-msg" role="status" aria-live="polite" style="margin-top:16px"></p>
+      </div>
+      <div class="container oculto" id="area-painel">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+          <p style="margin:0">Olá, <strong id="area-nome"></strong>.</p>
+          <button class="botao botao-contorno" type="button" id="sair">Sair</button>
+        </div>
+        <div class="grade grade-3" id="area-imoveis"></div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" defer></script>
+    <script src="/assets/js/area.js?v=${hash('assets/js/area.js')}" defer></script>`
+});
+
 // 404
 paginas['404.html'] = pagina({
   caminho: '/404.html',
@@ -712,6 +752,6 @@ fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map(([u, p, d]) => `  <url><loc>${SITE}${u}</loc><lastmod>${d || HOJE}</lastmod><priority>${p}</priority></url>`).join('\n') +
   `\n</urlset>\n`);
-fs.writeFileSync(path.join(RAIZ, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /gerador/\n\nSitemap: ${SITE}/sitemap.xml\n`);
+fs.writeFileSync(path.join(RAIZ, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /gerador/\nDisallow: /area/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 
 console.log(`${Object.keys(paginas).length} páginas geradas (css v=${V_CSS}, js v=${V_JS}).`);

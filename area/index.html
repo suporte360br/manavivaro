@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Área do cliente | Mana Vivaro</title>
+  <meta name="description" content="Área restrita aos clientes cadastrados do Mana Vivaro.">
+  <link rel="canonical" href="https://manavivaro.com.br/area/">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0e0f12">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Mana Vivaro">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Área do cliente">
+  <meta property="og:description" content="Área restrita aos clientes cadastrados do Mana Vivaro.">
+  <meta property="og:url" content="https://manavivaro.com.br/area/">
+  <meta property="og:image" content="https://manavivaro.com.br/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Área do cliente">
+  <meta name="twitter:description" content="Área restrita aos clientes cadastrados do Mana Vivaro.">
+  <meta name="twitter:image" content="https://manavivaro.com.br/assets/img/og.jpg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png?v=2">
+  <link rel="icon" href="/favicon.ico?v=2" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png?v=2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16.png?v=2">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png?v=2">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/assets/css/style.css?v=66fc92a5">
+  
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+  <header class="topo">
+    <div class="container">
+      <a class="marca" href="/" aria-label="Mana Vivaro, página inicial">
+        <img src="/assets/img/logo.png" alt="" width="54" height="54">
+        <span>Mana Vivaro</span>
+      </a>
+      <button class="botao-menu" aria-expanded="false" aria-controls="menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg> Menu
+      </button>
+      <nav class="menu" id="menu" aria-label="Principal">
+        <ul>
+          <li><a href="/">Início</a></li>
+          <li><a href="/servicos/">Serviços</a></li>
+          <li><a href="/sobre/">Sobre</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/area/" aria-current="page">Área do cliente</a></li>
+          <li><a class="cta-menu" href="/contato/">Fale conosco</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <h1>Área do cliente</h1>
+        <p>Acesso restrito aos clientes cadastrados do Mana Vivaro.</p>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container" style="max-width:560px" id="area-login">
+        <form class="formulario" id="form-celular">
+          <label>Celular com DDD<input name="celular" type="tel" inputmode="tel" autocomplete="tel" placeholder="(11) 99999-9999" required></label>
+          <button class="botao botao-primario" type="submit">Receber código por SMS</button>
+          <small>Enviaremos um código de 6 dígitos para o celular cadastrado.</small>
+        </form>
+        <form class="formulario oculto" id="form-codigo" style="margin-top:16px">
+          <label>Código recebido por SMS<input name="codigo" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></label>
+          <button class="botao botao-primario" type="submit">Entrar</button>
+          <button class="botao botao-contorno" type="button" id="trocar-celular">Usar outro celular</button>
+        </form>
+        <p id="area-msg" role="status" aria-live="polite" style="margin-top:16px"></p>
+      </div>
+      <div class="container oculto" id="area-painel">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px">
+          <p style="margin:0">Olá, <strong id="area-nome"></strong>.</p>
+          <button class="botao botao-contorno" type="button" id="sair">Sair</button>
+        </div>
+        <div class="grade grade-3" id="area-imoveis"></div>
+      </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" defer></script>
+    <script src="/assets/js/area.js?v=90a4a76e" defer></script>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <div class="colunas">
+        <div>
+          <img class="logo-rodape" src="/assets/img/logo.png" alt="Logotipo Mana Vivaro" width="72" height="72" loading="lazy">
+          <p>Administração de holding familiar e assessoria para famílias empresárias: patrimônio organizado, sucessão planejada e decisões transparentes.</p>
+        </div>
+        <div>
+          <h2>Navegação</h2>
+          <ul>
+            <li><a href="/servicos/">Serviços</a></li>
+            <li><a href="/sobre/">Sobre a Mana Vivaro</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contato/">Contato</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Contato</h2>
+          <ul>
+            <li><a href="mailto:contato@manavivaro.com.br">contato@manavivaro.com.br</a></li>
+            <li>São Paulo – SP</li>
+            <li><a href="/privacidade/">Política de privacidade</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="base">
+        <span>© <span id="ano">2026</span> Mana Vivaro. Todos os direitos reservados.</span>
+        <span>Administração de holding familiar</span>
+      </div>
+    </div>
+  </footer>
+  <script src="/assets/js/main.js?v=bda1f504" defer></script>
+</body>
+</html>

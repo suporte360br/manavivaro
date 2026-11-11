@@ -24,6 +24,8 @@ const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a 
 exports.materias = [
   {
     slug: 'contrato-social-da-holding-familiar',
+    imagem: 'holding.jpg',
+    imagemAlt: 'Esquema de holding reunindo casas, apartamento, lotes, fazenda, carro e quotas de empresa (imagem ilustrativa)',
     titulo: 'Contrato social da holding familiar: o que ele deve contemplar',
     tituloSEO: 'Contrato da holding familiar: cláusulas essenciais',
     tema: 'Holding familiar',
@@ -236,6 +238,8 @@ ${AVISO}`
   },
   {
     slug: 'aluguel-pessoa-fisica-ou-holding',
+    imagem: 'casa-card.jpg',
+    imagemAlt: 'Casa moderna com fachada de vidro e jardim iluminado ao entardecer (imagem ilustrativa)',
     titulo: 'Aluguel na pessoa física ou na holding: o que muda nos impostos',
     tema: 'Tributação',
     data: '2026-10-21',
