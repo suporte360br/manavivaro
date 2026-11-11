@@ -3,7 +3,7 @@
 // Matérias sem "imagem" usam a placa gráfica da marca no cartão.
 // "atualizado": data da última revisão do texto (vira dateModified e "Atualizado em").
 // "tituloSEO": título mais curto para a aba e o Google, quando o título passa de ~60 caracteres.
-// "fontes": lista [texto, link] exibida no fim da matéria. Links conferidos em 31/10/2026.
+// "fontes": lista [texto, link] exibida no fim da matéria. Links conferidos em 31/10 e 11/11/2026.
 
 const LEI = {
   cc: ['Código Civil (Lei 10.406/2002)', 'https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm'],
@@ -17,6 +17,9 @@ const LEI = {
   lc123: ['Lei Complementar 123/2006, art. 3º, § 4º (Simples Nacional)', 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp123.htm'],
   lc224: ['Lei Complementar 224/2025 (presunção do lucro presumido)', 'https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp224.htm'],
   rf2026: ['Receita Federal: tabela do IR de 2026', 'https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/tabelas/2026'],
+  cpc: ['Código de Processo Civil (Lei 13.105/2015), arts. 610 e 611', 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm'],
+  itcmdsp: ['Lei paulista 10.705/2000 (ITCMD em São Paulo)', 'https://www.al.sp.gov.br/repositorio/legislacao/lei/2000/lei-10705-28.12.2000.html'],
+  itbisp: ['Prefeitura de São Paulo: cálculo do ITBI', 'https://prefeitura.sp.gov.br/web/fazenda/w/servicos/itbi/2513'],
   cnj571: ['Resolução CNJ 571/2024 (inventário em cartório)', 'https://atos.cnj.jus.br/files/original2309432024083066d251371bc21.pdf'],
 };
 const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${texto}</a>`;
@@ -25,6 +28,123 @@ const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a 
 
 exports.materias = [
   {
+    slug: 'quanto-custa-holding-familiar',
+    titulo: 'Quanto custa abrir e manter uma holding familiar',
+    tema: 'Holding familiar',
+    data: '2026-11-11',
+    fontes: [LEI.itbisp, LEI.cf, LEI.ctn, LEI.stf796, LEI.itcmdsp, LEI.ec132, LEI.l9249],
+    descricao: 'Os custos de uma holding familiar: abertura, ITBI na transferência dos imóveis, ITCMD na doação das quotas, cartórios, contabilidade e impostos do dia a dia, com exemplo em São Paulo.',
+    corpo: `
+<p>Antes de decidir por uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>, a família precisa saber quanto ela custa. Os custos se dividem em três grupos: os de <strong>entrada</strong> (montar a empresa e transferir os bens), os da <strong>sucessão</strong> (doar as quotas) e os de <strong>manutenção</strong> (manter a empresa funcionando todos os anos).</p>
+
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#entrada">Custos de entrada</a></li>
+<li><a href="#doacao">Custos da doação das quotas</a></li>
+<li><a href="#manutencao">Custos de manutenção</a></li>
+<li><a href="#exemplo">Exemplo em São Paulo</a></li>
+<li><a href="#compensa">Quando os custos compensam</a></li>
+</ol></nav>
+
+<h2 id="entrada">Custos de entrada</h2>
+<ul>
+<li><strong>Honorários profissionais:</strong> advogado para o desenho jurídico, o contrato social e o acordo de sócios, e contador para a abertura e o regime tributário. Os valores variam muito conforme o tamanho do patrimônio e a complexidade da família; peça orçamento detalhado.</li>
+<li><strong>Registro da empresa:</strong> taxas da Junta Comercial e inscrições nos órgãos públicos. São custos baixos perto dos demais.</li>
+<li><strong>ITBI na transferência dos imóveis:</strong> a Constituição prevê imunidade quando o imóvel integraliza o capital (${link('cf', 'art. 156, § 2º, I')}), mas ela não vale se a atividade preponderante da holding for comprar, vender ou alugar imóveis (${link('ctn', 'CTN, art. 37')}), e não alcança o valor que exceder o capital integralizado (${link('stf796', 'STF, Tema 796')}). Holdings que vivem de aluguel costumam pagar o imposto. Em São Paulo, a alíquota é de 3% sobre o maior valor entre o da transação e o valor venal de referência (${link('itbisp', 'Prefeitura de São Paulo')}).</li>
+<li><strong>Escritura e registro de imóveis:</strong> emolumentos de cartório para registrar cada imóvel em nome da holding, calculados por tabelas estaduais conforme o valor do bem.</li>
+<li><strong>Imposto de Renda:</strong> transferindo os imóveis pelo valor da declaração, não há ganho de capital nesse momento (${link('l9249', 'Lei 9.249/1995, art. 23')}).</li>
+</ul>
+
+<h2 id="doacao">Custos da doação das quotas</h2>
+<p>Quando os pais doam as quotas aos filhos, incide o <strong>ITCMD</strong>, imposto estadual sobre doações e heranças. Em São Paulo, a alíquota é de 4% (${link('itcmdsp', 'Lei 10.705/2000, art. 16')}). A ${link('ec132', 'Emenda Constitucional 132/2023')} obriga os estados a adotar alíquotas progressivas, e São Paulo ainda discute a sua nova lei; por isso, a alíquota pode mudar.</p>
+<p>A base de cálculo da doação de quotas costuma gerar discussão com o fisco estadual: o valor das quotas pode ser apurado pelo patrimônio da holding, e alguns estados reavaliam os imóveis a valor de mercado. Esse ponto precisa entrar na simulação feita pelo contador. Há também os custos da escritura de doação, com as <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">cláusulas de proteção</a>.</p>
+<p>Lembre que o ITCMD também seria pago no inventário. A holding não elimina o imposto; ela permite escolher o momento e evita os custos e a demora de um <a href="/blog/inventario-em-cartorio/">inventário</a>.</p>
+
+<h2 id="manutencao">Custos de manutenção</h2>
+<ul>
+<li><strong>Contabilidade:</strong> mensalidade do contador, escrituração, declarações e obrigações acessórias. É o principal custo fixo.</li>
+<li><strong>Impostos sobre a receita:</strong> se a holding recebe aluguéis, paga IRPJ, CSLL, PIS e Cofins. No lucro presumido, a carga federal sobre aluguel fica em torno de 11,3% da receita para holdings de pequeno e médio porte (veja a <a href="/blog/aluguel-pessoa-fisica-ou-holding/">simulação de impostos sobre aluguel</a>). A partir de 2027 entram o IBS e a CBS.</li>
+<li><strong>Taxas e certificados:</strong> certificado digital, taxas municipais e eventuais alterações do contrato social na Junta Comercial.</li>
+<li><strong>Administração:</strong> se a família contratar quem cuide da rotina da holding, como a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a> da Mana Vivaro.</li>
+</ul>
+
+<h2 id="exemplo">Exemplo em São Paulo</h2>
+<p>Uma família com dois imóveis alugados na cidade de São Paulo, com valor de referência somado de <strong>R$ 2 milhões</strong>, quer transferi-los para uma holding e doar as quotas aos filhos. Supondo que a holding não tenha direito à imunidade do ITBI e que a base do ITCMD seja o mesmo valor dos imóveis:</p>
+<div class="rolagem"><table class="tabela">
+<thead><tr><th>Item</th><th>Cálculo</th><th>Valor estimado</th></tr></thead>
+<tbody>
+<tr><td>ITBI na transferência</td><td>3% × R$ 2.000.000</td><td>R$ 60.000</td></tr>
+<tr><td>ITCMD na doação das quotas</td><td>4% × R$ 2.000.000</td><td>R$ 80.000</td></tr>
+<tr><td>Honorários, Junta Comercial e cartórios</td><td>Conforme orçamentos</td><td>A orçar</td></tr>
+<tr><td>Contabilidade anual</td><td>Conforme orçamento</td><td>A orçar</td></tr>
+</tbody></table></div>
+<p>Sem a holding, o ITCMD de 4% seria pago do mesmo jeito no inventário, além das custas, dos honorários e da demora. O ITBI, por outro lado, é um custo que só existe por causa da holding. A conta que importa é: o que a família economiza em tempo, conflitos, inventário e impostos sobre o aluguel ao longo dos anos é maior que o ITBI e a manutenção?</p>
+<p class="legenda">Exemplo simplificado, com alíquotas vigentes em São Paulo em novembro de 2026. O ITBI e o ITCMD efetivos dependem da base de cálculo adotada pela prefeitura e pelo estado em cada caso.</p>
+
+<h2 id="compensa">Quando os custos compensam</h2>
+<ul>
+<li>Patrimônio com vários imóveis ou participações em empresas, em que um inventário seria longo e caro.</li>
+<li>Renda de aluguéis alta o suficiente para a diferença de imposto pagar a contabilidade.</li>
+<li>Famílias que querem regras de <a href="/blog/governanca-na-empresa-familiar/">governança</a> e proteção que um testamento não oferece.</li>
+</ul>
+<p>Para patrimônios menores, especialmente quando o principal bem é o imóvel em que a família mora, testamento e inventário em cartório costumam sair mais baratos. O <a href="/servicos/planejamento-sucessorio/">planejamento sucessório</a> serve justamente para comparar os caminhos com números.</p>
+${AVISO}`
+  },
+  {
+    slug: 'inventario-em-cartorio',
+    titulo: 'Inventário em cartório: quando é possível e como funciona',
+    tituloSEO: 'Inventário em cartório: requisitos e passo a passo',
+    tema: 'Sucessão',
+    data: '2026-11-11',
+    fontes: [LEI.cpc, LEI.cnj571, LEI.itcmdsp],
+    descricao: 'Inventário extrajudicial em cartório: requisitos, casos com menores ou testamento após a Resolução CNJ 571/2024, prazos, multa do ITCMD em São Paulo e passo a passo.',
+    corpo: `
+<p>Quando alguém morre, os bens só passam aos herdeiros depois do inventário. Ele pode ser feito na Justiça ou, em muitos casos, <strong>em cartório</strong>, por escritura pública, o que costuma ser bem mais rápido. Desde 2024, uma resolução do Conselho Nacional de Justiça ampliou os casos em que o cartório pode ser usado.</p>
+
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#requisitos">Quando o inventário pode ser feito em cartório</a></li>
+<li><a href="#menores">Herdeiros menores e testamento</a></li>
+<li><a href="#prazos">Prazos e multa</a></li>
+<li><a href="#passos">Passo a passo</a></li>
+<li><a href="#venda">Vender um bem para pagar as despesas</a></li>
+</ol></nav>
+
+<h2 id="requisitos">Quando o inventário pode ser feito em cartório</h2>
+<p>Pelo ${link('cpc', 'Código de Processo Civil (art. 610)')}, o inventário pode ser feito por escritura pública quando:</p>
+<ul>
+<li>todos os herdeiros são <strong>capazes e estão de acordo</strong> com a partilha;</li>
+<li>todos estão <strong>assistidos por advogado</strong> ou defensor público, que assina a escritura.</li>
+</ul>
+<p>A escolha do cartório de notas é livre: não precisa ser na cidade em que a pessoa morava nem onde estão os bens (${link('cnj571', 'Resolução CNJ 35/2007, art. 1º, com a redação da Resolução 571/2024')}). A escritura não depende de homologação do juiz e serve para transferir imóveis, veículos, quotas de empresas e levantar valores em bancos.</p>
+
+<h2 id="menores">Herdeiros menores e testamento</h2>
+<p>O Código de Processo Civil manda para a Justiça os inventários com testamento ou com herdeiro incapaz. A ${link('cnj571', 'Resolução CNJ 571/2024')} passou a permitir o cartório também nesses casos, com condições:</p>
+<ul>
+<li><strong>Herdeiro menor ou incapaz (art. 12-A):</strong> a parte dele precisa ser paga em fração ideal de cada um dos bens, nenhum ato pode dispor dos bens dele e o Ministério Público precisa se manifestar a favor. Se o Ministério Público ou outro interessado impugnar, o caso vai para o juiz.</li>
+<li><strong>Testamento (art. 12-B):</strong> o testamento precisa passar antes pela Justiça, numa ação de abertura e cumprimento, com autorização expressa do juiz para o inventário em cartório. Todos os interessados precisam ser capazes e estar de acordo (ou cumprir as regras do art. 12-A) e representados por advogado. Se o testamento reconhecer um filho ou tiver outra declaração irrevogável, o inventário precisa ser judicial.</li>
+</ul>
+<p>Se houver um único herdeiro, não há partilha: a escritura é de inventário e adjudicação dos bens.</p>
+
+<h2 id="prazos">Prazos e multa</h2>
+<p>O inventário deve ser aberto em até <strong>2 meses</strong> da morte (${link('cpc', 'CPC, art. 611')}). Os estados costumam punir o atraso no ITCMD. Em São Paulo, se o inventário não for requerido em 60 dias, o imposto tem multa de 10%; passados 180 dias, de 20% (${link('itcmdsp', 'Lei 10.705/2000, art. 21')}). A alíquota do ITCMD paulista é de 4%.</p>
+
+<h2 id="passos">Passo a passo</h2>
+<ol>
+<li><strong>Contratar um advogado</strong>, que pode representar todos os herdeiros se houver acordo.</li>
+<li><strong>Reunir os documentos:</strong> certidão de óbito, documentos dos herdeiros e do cônjuge ou companheiro, certidões dos bens (matrículas dos imóveis, documentos de veículos, extratos, contrato social das empresas) e certidões negativas de débitos.</li>
+<li><strong>Escolher o inventariante</strong>, que representa o espólio e pode buscar informações bancárias e fiscais necessárias.</li>
+<li><strong>Calcular e pagar o ITCMD</strong>, pela declaração no site da Fazenda do estado.</li>
+<li><strong>Assinar a escritura</strong> de inventário e partilha no cartório de notas escolhido.</li>
+<li><strong>Registrar a transferência</strong> de cada bem: cartório de registro de imóveis, Detran, Junta Comercial, bancos.</li>
+</ol>
+
+<h2 id="venda">Vender um bem para pagar as despesas</h2>
+<p>Uma novidade da Resolução 571/2024 (art. 11-A) é permitir que a escritura autorize o inventariante a <strong>vender um bem do espólio sem autorização judicial</strong> para pagar o ITCMD, os honorários e os emolumentos. É preciso discriminar as despesas, vincular o dinheiro da venda a elas, não haver bloqueio de bens dos herdeiros e o inventariante dar garantia de que vai usar o valor para isso. As despesas devem ser pagas em até um ano da venda.</p>
+
+<h2>Como evitar o inventário</h2>
+<p>O inventário em cartório é mais rápido, mas continua tendo custos e prazos, e exige acordo entre todos. Famílias com vários imóveis ou empresas podem resolver a sucessão em vida com uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a> e doação das quotas. Compare os caminhos em <a href="/blog/holding-x-inventario-x-testamento/">holding, inventário ou testamento</a>.</p>
+${AVISO}`
+  },
+  {
     slug: 'contrato-social-da-holding-familiar',
     imagem: 'holding.jpg',
     imagemAlt: 'Esquema de holding reunindo casas, apartamento, lotes, fazenda, carro e quotas de empresa (imagem ilustrativa)',
@@ -32,7 +152,8 @@ exports.materias = [
     tituloSEO: 'Contrato da holding familiar: cláusulas essenciais',
     tema: 'Holding familiar',
     data: '2026-11-10',
-    fontes: [LEI.cc, LEI.cf, LEI.ctn, LEI.stf796, LEI.l9249, LEI.lc123],
+    atualizado: '2026-11-11',
+    fontes: [LEI.cc, LEI.cf, LEI.ctn, LEI.stf796, LEI.l9249, LEI.lc123, LEI.itbisp],
     descricao: 'Checklist do contrato social da holding familiar: objeto, capital, administração, quóruns, cessão de quotas, sucessão, doação com cláusulas, ITBI e o passo a passo da implantação.',
     corpo: `
 <p>A <a href="/blog/o-que-e-holding-familiar/">holding familiar</a> só cumpre o que promete se o <strong>contrato social</strong> for bem escrito. É ele que define quem manda, como se decide, o que acontece quando alguém morre, se divorcia ou quer sair. Um contrato genérico, copiado de modelo, costuma ser a origem dos conflitos que a holding deveria evitar.</p>
@@ -60,7 +181,7 @@ exports.materias = [
 <thead><tr><th>Cláusula</th><th>O que definir</th></tr></thead>
 <tbody>
 <tr><td><strong>Objeto social</strong></td><td>As atividades da empresa: participação em outras sociedades, administração de bens próprios, locação. Precisa corresponder ao que a holding vai fazer de fato (veja o ponto sobre ITBI abaixo).</td></tr>
-<tr><td><strong>Capital social e integralização</strong></td><td>Quais bens entram, por qual valor (o declarado no Imposto de Renda ou o de mercado, com efeitos diferentes no ganho de capital futuro, ${link('l9249', 'Lei 9.249/1995, art. 23')}) e a divisão das quotas.</td></tr>
+<tr><td><strong>Capital social e integralização</strong></td><td>Quais bens entram, por qual valor e a divisão das quotas. Pelo valor declarado no Imposto de Renda não há ganho de capital na transferência; pelo valor de mercado, a diferença é tributada como ganho de capital da pessoa física já nesse momento (${link('l9249', 'Lei 9.249/1995, art. 23')}).</td></tr>
 <tr><td><strong>Administração</strong></td><td>Quem administra, por quanto tempo, com quais poderes e limites. Atos relevantes (vender imóvel, dar garantia, contrair dívida) devem exigir aprovação dos sócios. O contrato pode permitir administrador não sócio, o que abre espaço para a profissionalização.</td></tr>
 <tr><td><strong>Deliberações e quóruns</strong></td><td>Que decisões exigem maioria simples, maioria qualificada ou unanimidade. Os mínimos estão no Código Civil, mas a família pode exigir quóruns maiores para os temas sensíveis.</td></tr>
 <tr><td><strong>Lucros</strong></td><td>Política de distribuição e de reinvestimento, reserva para manutenção dos imóveis e quem recebe os lucros quando as quotas estão com usufruto.</td></tr>
@@ -87,12 +208,12 @@ exports.materias = [
 <h2 id="itbi">ITBI: o que esperar na integralização dos imóveis</h2>
 <p>A Constituição prevê que o ITBI não incide quando o imóvel é usado para integralizar o capital de uma empresa (${link('cf', 'art. 156, § 2º, I')}). É uma <strong>imunidade</strong>, mas com uma exceção importante: ela não vale se a atividade preponderante da empresa for a compra, venda ou locação de imóveis.</p>
 <p>O ${link('ctn', 'Código Tributário Nacional (art. 37)')} considera preponderante a atividade que gera <strong>mais de 50% da receita operacional</strong> nos dois anos anteriores e nos dois posteriores à aquisição. Para uma empresa nova, contam os três primeiros anos. Além disso, o STF decidiu que a imunidade só alcança o valor efetivamente usado para integralizar o capital (${link('stf796', 'Tema 796')}).</p>
-<p>Na prática, uma holding patrimonial cuja renda vem de aluguéis dificilmente escapa do ITBI. Em São Paulo, a prefeitura costuma negar a imunidade nesses casos, e a chance de obtê-la é muito baixa. O correto é <strong>incluir o ITBI no custo do planejamento</strong>. Escrever um objeto social que não corresponde à atividade real não resolve: a análise é feita pela receita efetiva, e a diferença pode gerar autuação.</p>
-<p>A alíquota e a base de cálculo variam por município (em São Paulo, 3%). Por isso, quem tem imóveis em várias cidades precisa consultar a regra de cada uma.</p>
+<p>Na prática, uma holding patrimonial cuja renda vem de aluguéis dificilmente escapa do ITBI, e prefeituras como a de São Paulo costumam negar a imunidade nesses casos. O correto é <strong>incluir o ITBI no custo do planejamento</strong>. Escrever um objeto social que não corresponde à atividade real não resolve: a análise é feita pela receita efetiva, e a diferença pode gerar autuação.</p>
+<p>A alíquota e a base de cálculo variam por município: em São Paulo, a alíquota é de 3% sobre o maior valor entre o da transação e o valor venal de referência (${link('itbisp', 'Prefeitura de São Paulo')}). Veja todos os custos em <a href="/blog/quanto-custa-holding-familiar/">quanto custa abrir e manter uma holding familiar</a>. Por isso, quem tem imóveis em várias cidades precisa consultar a regra de cada uma.</p>
 
 <h2 id="cuidados">Cuidados que costumam ser esquecidos</h2>
 <ul>
-<li><strong>Familiar com empresa no Simples Nacional:</strong> se um sócio da holding também tiver empresa no Simples e participar com mais de 10% do capital da holding, a empresa dele pode ser excluída do Simples quando a receita somada das duas passar do limite (${link('lc123', 'LC 123/2006, art. 3º, § 4º')}). Vale simular antes de definir as participações.</li>
+<li><strong>Familiar com empresa no Simples Nacional:</strong> se um sócio da holding também tiver empresa no Simples e participar com mais de 10% do capital da holding, a empresa dele pode ser excluída do Simples quando a receita somada das duas passar do limite. O mesmo vale se ele for administrador da holding (${link('lc123', 'LC 123/2006, art. 3º, § 4º, IV e V')}). Vale simular antes de definir as participações e quem administra.</li>
 <li><strong>Regime de bens dos casamentos:</strong> pode alterar quem é dono de quê antes mesmo da holding existir.</li>
 <li><strong>Dívidas anteriores:</strong> transferir bens para fugir de credores pode ser anulado como fraude.</li>
 <li><strong>Revisão periódica:</strong> casamentos, nascimentos, novos imóveis e mudanças na lei (como a <a href="/blog/holding-x-inventario-x-testamento/">reforma tributária</a>) pedem revisão do contrato e do acordo de sócios.</li>
@@ -105,7 +226,7 @@ ${AVISO}`
     titulo: 'O que é uma holding familiar e quando ela faz sentido',
     tema: 'Holding familiar',
     data: '2026-10-21',
-    atualizado: '2026-10-31',
+    atualizado: '2026-11-11',
     fontes: [LEI.cc],
     descricao: 'Entenda o que é uma holding familiar, como ela funciona, quais as vantagens reais e em que situações ela não compensa.',
     imagem: 'familia-card.jpg',
@@ -153,7 +274,7 @@ ${AVISO}`
 <ol>
 <li>Faça um inventário do patrimônio: imóveis, aplicações, participações, dívidas e rendimentos (estes <a href="/blog/organizacao-financeira-da-familia-empresaria/">hábitos de organização financeira</a> ajudam).</li>
 <li>Converse em família sobre objetivos: quem vai administrar, como os rendimentos serão usados, o que acontece se um herdeiro quiser sair.</li>
-<li>Peça uma simulação de custos: ITBI, ITCMD na doação das quotas, honorários e tributação dos rendimentos.</li>
+<li>Peça uma simulação de custos: ITBI, ITCMD na doação das quotas, honorários e tributação dos rendimentos (veja <a href="/blog/quanto-custa-holding-familiar/">quanto custa abrir e manter uma holding familiar</a>).</li>
 <li>Só então defina o tipo societário, o contrato social e o acordo de sócios.</li>
 </ol>
 <p>Depois que a estrutura está pronta, a Mana Vivaro cuida do dia a dia: conheça a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a>.</p>
@@ -164,8 +285,8 @@ ${AVISO}`
     titulo: 'Holding, inventário ou testamento: como planejar a sucessão',
     tema: 'Sucessão',
     data: '2026-10-21',
-    atualizado: '2026-10-31',
-    fontes: [LEI.cnj571, LEI.ec132, LEI.cc],
+    atualizado: '2026-11-11',
+    fontes: [LEI.cnj571, LEI.ec132, LEI.itcmdsp, LEI.cc],
     descricao: 'Compare holding familiar, inventário e testamento como caminhos de sucessão: custos, prazos, impostos e o que muda com a reforma tributária.',
     corpo: `
 <p>Toda família que tem patrimônio vai passar, cedo ou tarde, pela sucessão. A pergunta não é <em>se</em>, mas <em>como</em>: deixar para resolver no inventário, organizar um testamento ou estruturar uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a> ainda em vida.</p>
@@ -176,13 +297,14 @@ ${AVISO}`
 <li><strong>Extrajudicial</strong>, em cartório, quando há acordo entre os herdeiros e todos estão assistidos por advogado. Desde 2024, uma resolução do Conselho Nacional de Justiça (${link('cnj571', 'Resolução CNJ 571/2024')}) passou a admitir o inventário em cartório também em alguns casos com herdeiros menores ou com testamento, cumpridas certas condições.</li>
 <li><strong>Judicial</strong>, quando há conflito ou outra situação que exija o juiz. Pode levar anos.</li>
 </ul>
+<p>Os requisitos e o passo a passo do inventário em cartório estão em <a href="/blog/inventario-em-cartorio/">inventário em cartório: quando é possível e como funciona</a>.</p>
 <p>Em ambos os casos incidem o ITCMD (imposto estadual sobre heranças e doações), emolumentos ou custas e honorários advocatícios. Enquanto o inventário não termina, vender ou alugar os bens costuma depender de autorização, o que trava a gestão.</p>
 
 <h2>Testamento: define a vontade, não evita o inventário</h2>
 <p>O testamento permite distribuir a parte disponível do patrimônio (até 50% quando há herdeiros necessários, como filhos e cônjuge) e registrar vontades. Ele <strong>não dispensa o inventário</strong>, mas reduz a margem para disputa.</p>
 
 <h2>Holding familiar: sucessão resolvida em vida</h2>
-<p>Na holding, os bens já pertencem à sociedade e as quotas são doadas aos herdeiros em vida, normalmente com <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">reserva de usufruto e cláusulas de proteção</a> para os pais. No falecimento, o usufruto se extingue e os herdeiros já são os sócios: não há bens a inventariar, apenas o cancelamento do usufruto.</p>
+<p>Na holding, os bens já pertencem à sociedade e as quotas são doadas aos herdeiros em vida, normalmente com <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">reserva de usufruto e cláusulas de proteção</a> para os pais. No falecimento, o usufruto se extingue e os herdeiros já são os sócios: se todas as quotas tiverem sido doadas, não há o que inventariar em relação a elas, apenas o cancelamento do usufruto. Bens que ficaram fora da holding continuam indo para inventário.</p>
 <p>Isso não significa “sem imposto”: o ITCMD incide na doação das quotas, só que pago no momento escolhido pela família e sobre a base de cálculo vigente na época.</p>
 
 <div class="rolagem"><table class="tabela">
@@ -196,7 +318,7 @@ ${AVISO}`
 </tbody></table></div>
 
 <h2>O que muda com a reforma tributária</h2>
-<p>A ${link('ec132', 'Emenda Constitucional 132/2023')} determinou que o ITCMD seja <strong>progressivo</strong>, ou seja, com alíquotas maiores para heranças e doações de valor mais alto, e cada estado está ajustando a sua lei. A tendência é de aumento de custo para grandes patrimônios, o que tem levado muitas famílias a antecipar o planejamento.</p>
+<p>A ${link('ec132', 'Emenda Constitucional 132/2023')} determinou que o ITCMD seja <strong>progressivo</strong>, ou seja, com alíquotas maiores para heranças e doações de valor mais alto, e cada estado está ajustando a sua lei. Em São Paulo, a alíquota segue fixa em 4% enquanto a nova lei estadual não é aprovada (${link('itcmdsp', 'Lei 10.705/2000, art. 16')}). A tendência é de aumento de custo para grandes patrimônios, o que tem levado muitas famílias a antecipar o planejamento.</p>
 <p>Também mudou a regra de qual estado cobra o imposto sobre bens móveis, títulos e créditos: passa a ser o do domicílio de quem faleceu ou de quem doou. Imóveis continuam tributados no estado onde estão.</p>
 
 <h2>Qual escolher?</h2>
