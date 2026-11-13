@@ -20,6 +20,10 @@ const LEI = {
   cpc: ['Código de Processo Civil (Lei 13.105/2015), arts. 610 e 611', 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13105.htm'],
   itcmdsp: ['Lei paulista 10.705/2000 (ITCMD em São Paulo)', 'https://www.al.sp.gov.br/repositorio/legislacao/lei/2000/lei-10705-28.12.2000.html'],
   itbisp: ['Prefeitura de São Paulo: cálculo do ITBI', 'https://prefeitura.sp.gov.br/web/fazenda/w/servicos/itbi/2513'],
+  prirpf: ['Receita Federal: Perguntas e Respostas IRPF 2026 (perguntas 451 a 466)', 'https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/perguntas-e-respostas/dirpf/p-r-irpf-2026-v1-00-2026-04-23.pdf'],
+  eca: ['Estatuto da Criança e do Adolescente (Lei 8.069/1990), art. 260', 'https://www.planalto.gov.br/ccivil_03/leis/l8069.htm'],
+  esporte: ['Lei de Incentivo ao Esporte (Lei 11.438/2006)', 'https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11438.htm'],
+  l9532: ['Lei 9.532/1997, arts. 6º, 22 e 23', 'https://www.planalto.gov.br/ccivil_03/leis/l9532.htm'],
   cnj571: ['Resolução CNJ 571/2024 (inventário em cartório)', 'https://atos.cnj.jus.br/files/original2309432024083066d251371bc21.pdf'],
 };
 const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${texto}</a>`;
@@ -27,6 +31,89 @@ const link = (chave, texto) => `<a href="${LEI[chave][1]}" rel="noopener">${text
 const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a análise de um advogado e de um contador para o caso concreto da sua família. Regras tributárias mudam com frequência: confira a legislação em vigor antes de decidir.</p>`;
 
 exports.materias = [
+  {
+    slug: 'doacoes-que-abatem-imposto-de-renda',
+    imagem: 'doacoes-ir.jpg',
+    imagemAlt: 'Ilustração de caixa de presente com laço dourado, recibo e moedas, representando doações que abatem o Imposto de Renda',
+    titulo: 'Doações que abatem o Imposto de Renda: como fazer dentro da lei',
+    tituloSEO: 'Doações que abatem o IR: como fazer dentro da lei',
+    tema: 'Tributação',
+    data: '2026-11-13',
+    fontes: [LEI.prirpf, LEI.eca, LEI.esporte, LEI.l9249, LEI.l9532, LEI.ec132],
+    descricao: 'Quais doações abatem o Imposto de Renda, os limites de 6% e 7%, a doação direto na declaração, as regras para empresas e os cuidados para fazer tudo dentro da lei.',
+    corpo: `
+<p>Parte do Imposto de Renda que você já teria de pagar pode ser <strong>destinada a projetos sociais, culturais e esportivos</strong>, sem custo adicional. A lei permite isso por meio das doações incentivadas. Mas só algumas doações dão direito ao abatimento, há limites e a comprovação precisa estar em ordem. Abaixo explicamos o que vale para as pessoas físicas, para as empresas e quais cuidados a contabilidade deve tomar.</p>
+
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#pessoa-fisica">O que a pessoa física pode abater</a></li>
+<li><a href="#limites">Limites e um exemplo</a></li>
+<li><a href="#na-declaracao">Doação direto na declaração</a></li>
+<li><a href="#empresas">Doações feitas por empresas</a></li>
+<li><a href="#contabilidade">Comprovantes e registro contábil</a></li>
+<li><a href="#cuidados">Cuidados e o que não abate</a></li>
+</ol></nav>
+
+<h2 id="pessoa-fisica">O que a pessoa física pode abater</h2>
+<p>Na declaração de ajuste anual, a pessoa física pode deduzir <strong>do imposto devido</strong> (e não da base de cálculo) as doações e patrocínios a (${link('prirpf', 'Receita Federal, pergunta 455')}):</p>
+<ul>
+<li><strong>Fundos dos Direitos da Criança e do Adolescente</strong>, municipais, estaduais, distrital ou nacional;</li>
+<li><strong>Fundos da Pessoa Idosa</strong>, nas mesmas esferas;</li>
+<li><strong>projetos culturais</strong> aprovados pelo Ministério da Cultura (Lei Rouanet) e projetos <strong>audiovisuais</strong> aprovados pela Ancine;</li>
+<li><strong>projetos esportivos e paradesportivos</strong> aprovados pelo Ministério do Esporte;</li>
+<li><strong>projetos de reciclagem</strong> aprovados pelo Ministério do Meio Ambiente (até o ano-calendário de 2027).</li>
+</ul>
+<p>Os programas de saúde Pronon (oncologia) e Pronas/PCD (pessoa com deficiência) tinham dedução de até 1% cada até o ano-calendário de 2025. Antes de doar, confira se foram prorrogados.</p>
+<p>Duas condições valem para todos: é preciso usar a <strong>declaração completa</strong> (quem escolhe o desconto simplificado perde o abatimento, ${link('prirpf', 'pergunta 456')}) e a entidade ou o fundo precisa estar habilitado para receber doações incentivadas.</p>
+
+<h2 id="limites">Limites e um exemplo</h2>
+<p>Os limites são calculados sobre o <strong>imposto devido</strong> na declaração:</p>
+<ul>
+<li>Fundos da Criança, Fundos da Pessoa Idosa, cultura e audiovisual: juntos, até <strong>6%</strong> do imposto devido (${link('l9532', 'Lei 9.532/1997, art. 22')});</li>
+<li>somando o incentivo ao esporte, o teto sobe para <strong>7%</strong> (${link('esporte', 'Lei 11.438/2006')});</li>
+<li>somando a reciclagem, o teto continua em 6%.</li>
+</ul>
+<p><strong>Exemplo:</strong> uma pessoa com R$ 50.000 de imposto devido no ano pode destinar até R$ 3.000 (6%) a fundos e projetos culturais e chegar a R$ 3.500 (7%) se incluir um projeto esportivo. Na prática, esse valor sai do imposto que seria pago ou aumenta a restituição.</p>
+<p>No caso da cultura, alguns projetos permitem abater 100% do valor; em outros segmentos, abate-se 80% das doações e 60% dos patrocínios, sempre dentro do teto. O próprio projeto informa em qual regra está enquadrado.</p>
+
+<h2 id="na-declaracao">Doação direto na declaração</h2>
+<p>Quem esqueceu de doar durante o ano ainda pode destinar parte do imposto aos <strong>Fundos da Criança e do Adolescente</strong> e aos <strong>Fundos da Pessoa Idosa</strong> no próprio programa da declaração, até <strong>3% do imposto devido</strong> para cada um, dentro do limite global de 6%. As regras (${link('prirpf', 'pergunta 455')}):</p>
+<ul>
+<li>só vale para a declaração entregue no prazo;</li>
+<li>o programa gera um Darf específico para cada doação, que precisa ser pago até o último dia de entrega da declaração (em 2026, 29 de maio);</li>
+<li>se o Darf não for pago, a dedução é cancelada e o imposto volta a ser cobrado com acréscimos;</li>
+<li>o pagamento não pode ser parcelado e deve ser feito mesmo que a declaração tenha restituição.</li>
+</ul>
+
+<h2 id="empresas">Doações feitas por empresas</h2>
+<p>Para empresas, a regra depende do regime tributário:</p>
+<ul>
+<li><strong>Lucro real:</strong> pode deduzir doações a entidades sem fins lucrativos que atendem a comunidade, organizadas como organização da sociedade civil, até <strong>2% do lucro operacional</strong>, e a instituições de ensino e pesquisa, até <strong>1,5%</strong> (${link('l9249', 'Lei 9.249/1995, art. 13, § 2º')}). Também pode abater do imposto devido as doações aos Fundos da Criança (até 1%, ${link('eca', 'ECA, art. 260')}), a projetos culturais e audiovisuais (até 4%, ${link('l9532', 'Lei 9.532/1997, art. 6º')}) e a projetos esportivos (até 2%, ${link('esporte', 'Lei 11.438/2006')}).</li>
+<li><strong>Lucro presumido e Simples Nacional:</strong> não têm esses abatimentos, porque o imposto é calculado sobre uma base presumida ou sobre a receita.</li>
+</ul>
+<p>Isso é importante para quem tem uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>: a maioria fica no lucro presumido e, portanto, <strong>não abate doações</strong>. Na família, quem costuma conseguir o benefício são os sócios, como pessoas físicas, na declaração completa. Planeje isso junto com a <a href="/blog/organizacao-financeira-da-familia-empresaria/">organização financeira da família</a>.</p>
+<p>Nas doações de empresas a entidades, a lei exige ainda que o dinheiro seja depositado na conta da entidade e que a empresa guarde uma declaração da entidade, em modelo da Receita, comprometendo-se a aplicar os recursos nos seus objetivos e a não distribuir lucros.</p>
+
+<h2 id="contabilidade">Comprovantes e registro contábil</h2>
+<ol>
+<li><strong>Confirme a habilitação</strong> antes de doar: o fundo precisa ser controlado por um conselho de direitos e o projeto cultural, esportivo ou de reciclagem precisa estar aprovado pelo ministério e dentro do período de captação.</li>
+<li><strong>Pague pela conta indicada:</strong> doações em dinheiro aos fundos vão para conta específica em banco público; projetos aprovados têm conta própria para captação. Evite dinheiro em espécie.</li>
+<li><strong>Exija o recibo</strong> em nome do doador, com nome e CNPJ do beneficiário e o valor. Guarde recibos e comprovantes por, no mínimo, cinco anos.</li>
+<li><strong>Declare corretamente:</strong> na ficha "Doações Efetuadas" da declaração, com o código, o nome, o CNPJ e o valor. Se a doação for em bens, use o valor que consta na sua última declaração, sem passar do valor de mercado, e dê baixa do bem na ficha de bens.</li>
+<li><strong>Na empresa,</strong> o contador registra a doação na contabilidade e faz os ajustes no Lalur e no Lacs: o que a lei não permite tratar como despesa é adicionado ao lucro, e os incentivos são abatidos do imposto devido dentro dos limites de cada um.</li>
+</ol>
+
+<h2 id="cuidados">Cuidados e o que não abate</h2>
+<ul>
+<li><strong>Doações a entidades filantrópicas, igrejas, escolas ou ONGs em geral</strong>, fora dos fundos e projetos incentivados, <strong>não abatem</strong> o IR da pessoa física (${link('prirpf', 'pergunta 454')}). Elas continuam valendo a pena pelo propósito, mas não pelo imposto.</li>
+<li><strong>Doações a partidos e candidatos</strong> não abatem o IR, mas precisam ser informadas na declaração (pergunta 451).</li>
+<li><strong>Doações a filhos e parentes</strong> não reduzem o Imposto de Renda: o doador informa a doação na declaração (código 80 em dinheiro, código 81 em bens), quem recebe declara como rendimento isento, e pode haver ITCMD estadual. Em bens, a doação em adiantamento de legítima pode ser feita pelo valor da declaração, sem ganho de capital, ou pelo valor de mercado, com imposto sobre a diferença (${link('l9532', 'Lei 9.532/1997, art. 23')}). Veja como isso funciona na <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">doação de quotas da holding</a>.</li>
+<li><strong>ITCMD sobre doações a instituições:</strong> a ${link('ec132', 'Emenda Constitucional 132/2023')} determinou que o imposto não incida sobre doações a instituições sem fins lucrativos de relevância pública e social, nos termos da lei complementar. Até lá, vale a regra de cada estado.</li>
+<li><strong>Doação não pode ter contrapartida.</strong> Receber de volta parte do valor, serviços ou vantagens para si ou para parentes descaracteriza a doação e pode configurar fraude, com cobrança do imposto, multa e responsabilização.</li>
+<li><strong>Não ultrapasse os limites:</strong> o que passar do teto não é abatido. No caso da doação direto na declaração, o valor pago a mais vai para o fundo e não é devolvido.</li>
+</ul>
+<p>Doar parte do imposto é uma forma legal e simples de apoiar causas da sua região. Com o planejamento certo, ela entra no calendário da família junto com a declaração anual. Se quiser incluir as doações no planejamento do patrimônio, conheça a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a> da Mana Vivaro.</p>
+${AVISO}`
+  },
   {
     slug: 'quanto-custa-holding-familiar',
     imagem: 'custos-holding.jpg',
