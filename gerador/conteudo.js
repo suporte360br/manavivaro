@@ -32,6 +32,97 @@ const AVISO =`<p class="aviso">Este conteúdo é informativo e não substitui a 
 
 exports.materias = [
   {
+    slug: 'roteiro-contrato-social-holding-familiar',
+    imagem: 'roteiro-contrato.jpg',
+    imagemAlt: 'Ilustração de prancheta com lista de verificação e caneta, representando o roteiro do contrato social da holding familiar',
+    titulo: 'Roteiro do contrato social da holding familiar (para imprimir)',
+    tituloSEO: 'Contrato social da holding familiar: roteiro para imprimir',
+    tema: 'Holding familiar',
+    data: '2026-11-17',
+    fontes: [LEI.cc],
+    descricao: 'Roteiro gratuito para imprimir com as decisões que a família precisa tomar antes de o advogado redigir o contrato social da holding familiar.',
+    corpo: `
+<p>Quem procura um <strong>modelo de contrato social de holding familiar</strong> quase sempre precisa, antes, de outra coisa: saber <strong>quais decisões a família tem de tomar</strong>. Um contrato copiado de modelo genérico costuma deixar de fora justamente as regras que evitam conflitos. Este roteiro reúne essas decisões, para a família responder junto e levar ao advogado que vai redigir o contrato.</p>
+<p class="aviso">Este roteiro não é um contrato pronto. O contrato social e o acordo de sócios devem ser redigidos por advogado, conforme o caso da família. Entenda cada ponto na matéria <a href="/blog/contrato-social-da-holding-familiar/">contrato social da holding familiar</a>.</p>
+<p><button class="botao botao-primario botao-imprimir" type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></p>
+
+<h2 id="familia">1. A família e o patrimônio</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Quem serão os sócios (pais, filhos, cônjuges?) e com quantos por cento cada um.</li>
+<li><span class="caixa" aria-hidden="true"></span>Lista dos bens que vão para a holding: imóveis, quotas de empresas, aplicações.</li>
+<li><span class="caixa" aria-hidden="true"></span>Valor de cada bem: o da declaração de IR ou o de mercado (o de mercado gera imposto sobre ganho de capital na transferência).</li>
+<li><span class="caixa" aria-hidden="true"></span>Regime de bens do casamento de cada sócio.</li>
+<li><span class="caixa" aria-hidden="true"></span>Dívidas e garantias existentes.</li>
+</ul>
+
+<h2 id="objeto">2. Objeto e capital</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Atividades da holding: participar de outras empresas, administrar bens próprios, alugar imóveis.</li>
+<li><span class="caixa" aria-hidden="true"></span>Estimativa de ITBI na transferência dos imóveis, se a holding for viver de aluguel.</li>
+<li><span class="caixa" aria-hidden="true"></span>Regime tributário sugerido pelo contador (geralmente lucro presumido).</li>
+</ul>
+
+<h2 id="administracao">3. Administração</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Quem administra, por quanto tempo e com quais poderes.</li>
+<li><span class="caixa" aria-hidden="true"></span>Atos que exigem aprovação dos sócios: vender ou hipotecar imóvel, dar garantia, contrair dívida.</li>
+<li><span class="caixa" aria-hidden="true"></span>Se haverá administrador que não é da família (exige aprovação de mais da metade do capital, se o capital já estiver integralizado).</li>
+<li><span class="caixa" aria-hidden="true"></span>Remuneração do administrador (pró-labore).</li>
+</ul>
+
+<h2 id="decisoes">4. Decisões e quóruns</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Que temas exigem unanimidade ou maioria qualificada (o Código Civil exige mais da metade do capital para mudar o contrato e nomear ou destituir administradores).</li>
+<li><span class="caixa" aria-hidden="true"></span>Frequência das reuniões de sócios e quem convoca.</li>
+<li><span class="caixa" aria-hidden="true"></span>Como serão registradas as decisões (atas).</li>
+</ul>
+
+<h2 id="lucros">5. Lucros</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Quanto do lucro é distribuído e quanto fica para reserva e manutenção dos imóveis.</li>
+<li><span class="caixa" aria-hidden="true"></span>Quem recebe os lucros das quotas com usufruto.</li>
+</ul>
+
+<h2 id="quotas">6. Venda e doação de quotas</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Se um sócio pode vender quotas a quem não é da família.</li>
+<li><span class="caixa" aria-hidden="true"></span>Direito de preferência dos demais sócios e prazo para exercê-lo.</li>
+<li><span class="caixa" aria-hidden="true"></span>Cláusulas da doação aos filhos: usufruto, inalienabilidade, impenhorabilidade, incomunicabilidade, reversão.</li>
+</ul>
+
+<h2 id="sucessao">7. Falecimento, divórcio e incapacidade</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Se os herdeiros de um sócio entram automaticamente na sociedade (sem regra, a quota é liquidada e paga aos herdeiros).</li>
+<li><span class="caixa" aria-hidden="true"></span>Que cônjuges e companheiros não se tornam sócios por causa do casamento.</li>
+<li><span class="caixa" aria-hidden="true"></span>O que acontece se um sócio ficar incapaz.</li>
+</ul>
+
+<h2 id="saida">8. Saída de sócio</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Hipóteses de retirada e de exclusão por justa causa.</li>
+<li><span class="caixa" aria-hidden="true"></span>Como se calcula o valor das quotas de quem sai (sem regra, vale o balanço na data da saída).</li>
+<li><span class="caixa" aria-hidden="true"></span>Prazo e número de parcelas para pagar quem sai (sem regra, 90 dias), para não descapitalizar a holding.</li>
+</ul>
+
+<h2 id="conflitos">9. Conflitos e governança</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Mediação familiar antes de qualquer processo e, se for o caso, arbitragem.</li>
+<li><span class="caixa" aria-hidden="true"></span>Se haverá acordo de sócios e conselho de família.</li>
+<li><span class="caixa" aria-hidden="true"></span>Critérios para um membro da família trabalhar na gestão.</li>
+</ul>
+
+<h2 id="documentos">10. Documentos para levar ao advogado</h2>
+<ul class="roteiro">
+<li><span class="caixa" aria-hidden="true"></span>Documentos pessoais e certidões de casamento dos sócios.</li>
+<li><span class="caixa" aria-hidden="true"></span>Matrículas atualizadas dos imóveis e últimas declarações de IR.</li>
+<li><span class="caixa" aria-hidden="true"></span>Contratos sociais das empresas que entrarão na holding.</li>
+<li><span class="caixa" aria-hidden="true"></span>Este roteiro preenchido.</li>
+</ul>
+
+<p>Depois de preenchido, o roteiro vira a base do contrato social, do acordo de sócios e das escrituras de doação. Se quiser ajuda para conduzir essa conversa em família, conheça o nosso <a href="/servicos/planejamento-sucessorio/">planejamento sucessório</a> e a <a href="/servicos/governanca-familiar/">governança familiar</a>.</p>
+${AVISO}`
+  },
+  {
     slug: 'doacoes-que-abatem-imposto-de-renda',
     imagem: 'doacoes-ir.jpg',
     imagemAlt: 'Ilustração de caixa de presente com laço dourado, recibo e moedas, representando doações que abatem o Imposto de Renda',
@@ -40,7 +131,7 @@ exports.materias = [
     tema: 'Tributação',
     data: '2026-11-13',
     fontes: [LEI.prirpf, LEI.eca, LEI.esporte, LEI.l9249, LEI.l9532, LEI.ec132],
-    descricao: 'Quais doações abatem o Imposto de Renda, os limites de 6% e 7%, a doação direto na declaração, as regras para empresas e os cuidados para fazer tudo dentro da lei.',
+    descricao: 'Até 6% do IR devido (7% com esporte) pode ir para fundos e projetos: quais doações abatem, como doar na declaração e os cuidados legais.',
     corpo: `
 <p>Parte do Imposto de Renda que você já teria de pagar pode ser <strong>destinada a projetos sociais, culturais e esportivos</strong>, sem custo adicional. A lei permite isso por meio das doações incentivadas. Mas só algumas doações dão direito ao abatimento, há limites e a comprovação precisa estar em ordem. Abaixo explicamos o que vale para as pessoas físicas, para as empresas e quais cuidados a contabilidade deve tomar.</p>
 
@@ -122,7 +213,7 @@ ${AVISO}`
     tema: 'Holding familiar',
     data: '2026-11-11',
     fontes: [LEI.itbisp, LEI.cf, LEI.ctn, LEI.stf796, LEI.itcmdsp, LEI.ec132, LEI.l9249],
-    descricao: 'Os custos de uma holding familiar: abertura, ITBI na transferência dos imóveis, ITCMD na doação das quotas, cartórios, contabilidade e impostos do dia a dia, com exemplo em São Paulo.',
+    descricao: 'Os custos de uma holding familiar: abertura, ITBI, ITCMD na doação das quotas, cartórios e contabilidade, com exemplo em São Paulo.',
     corpo: `
 <p>Antes de decidir por uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>, a família precisa saber quanto ela custa. Os custos se dividem em três grupos: os de <strong>entrada</strong> (montar a empresa e transferir os bens), os da <strong>sucessão</strong> (doar as quotas) e os de <strong>manutenção</strong> (manter a empresa funcionando todos os anos).</p>
 
@@ -240,14 +331,16 @@ ${AVISO}`
     imagem: 'holding.jpg',
     imagemAlt: 'Esquema de holding reunindo casas, apartamento, lotes, fazenda, carro e quotas de empresa (imagem ilustrativa)',
     titulo: 'Contrato social da holding familiar: o que ele deve contemplar',
-    tituloSEO: 'Contrato da holding familiar: cláusulas essenciais',
+    tituloSEO: 'Contrato social da holding familiar: cláusulas e roteiro',
     tema: 'Holding familiar',
     data: '2026-11-10',
-    atualizado: '2026-11-11',
+    atualizado: '2026-11-17',
     fontes: [LEI.cc, LEI.cf, LEI.ctn, LEI.stf796, LEI.l9249, LEI.lc123, LEI.itbisp],
-    descricao: 'Checklist do contrato social da holding familiar: objeto, capital, administração, quóruns, cessão de quotas, sucessão, doação com cláusulas, ITBI e o passo a passo da implantação.',
+    descricao: 'O que o contrato social da holding familiar deve ter: objeto, capital, administração, quóruns, sucessão, cônjuges e saída de sócios. Com roteiro para imprimir.',
     corpo: `
 <p>A <a href="/blog/o-que-e-holding-familiar/">holding familiar</a> só cumpre o que promete se o <strong>contrato social</strong> for bem escrito. É ele que define quem manda, como se decide, o que acontece quando alguém morre, se divorcia ou quer sair. Um contrato genérico, copiado de modelo, costuma ser a origem dos conflitos que a holding deveria evitar.</p>
+
+<p class="aviso">Procurando um modelo? Preparamos um <a href="/blog/roteiro-contrato-social-holding-familiar/"><strong>roteiro para imprimir</strong></a> com todas as decisões que a família precisa tomar antes de o advogado redigir o contrato.</p>
 
 <nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
 <li><a href="#antes">Antes do contrato: o protocolo da família</a></li>
@@ -283,7 +376,7 @@ ${AVISO}`
 <tr><td><strong>Usufruto de quotas</strong></td><td>Se o voto fica com o usufrutuário (os pais) ou com o nu-proprietário (os filhos), em todos os temas ou só em alguns.</td></tr>
 <tr><td><strong>Solução de conflitos</strong></td><td>Mediação familiar antes de qualquer processo e, se for o caso, arbitragem.</td></tr>
 </tbody></table></div>
-<p>Temas mais detalhados, como regras de convivência, conselho de família e critérios para um herdeiro trabalhar na empresa, costumam ir para o acordo de sócios, que complementa o contrato.</p>
+<p>Temas mais detalhados, como regras de convivência, conselho de família e critérios para um herdeiro trabalhar na empresa, costumam ir para o acordo de sócios, que complementa o contrato. Veja como apoiamos essa etapa em <a href="/servicos/governanca-familiar/">governança familiar</a>.</p>
 
 <h2 id="doacao">A doação das quotas e suas cláusulas</h2>
 <p>Depois de constituída a holding, os pais costumam doar as quotas aos filhos. Na escritura de doação entram as cláusulas de proteção, explicadas em detalhe em <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">cláusulas que protegem o patrimônio na doação de quotas</a>:</p>
@@ -373,6 +466,8 @@ ${AVISO}`
   },
   {
     slug: 'holding-x-inventario-x-testamento',
+    imagem: 'sucessao-caminhos.jpg',
+    imagemAlt: 'Ilustração de uma família diante de três caminhos: testamento, holding e inventário',
     titulo: 'Holding, inventário ou testamento: como planejar a sucessão',
     tema: 'Sucessão',
     data: '2026-10-21',
@@ -421,18 +516,28 @@ ${AVISO}`
     titulo: 'Cláusulas que protegem o patrimônio na doação de quotas',
     tema: 'Sucessão',
     data: '2026-10-21',
-    atualizado: '2026-10-31',
+    atualizado: '2026-11-17',
     fontes: [LEI.cc],
-    descricao: 'Usufruto, inalienabilidade, impenhorabilidade, incomunicabilidade e reversão: para que serve cada cláusula na doação de quotas da holding.',
+    descricao: 'Usufruto, inalienabilidade, impenhorabilidade, incomunicabilidade e reversão: quando usar cada cláusula na doação de quotas, com exemplos e o que diz o Código Civil.',
     imagem: 'protecao.jpg',
     imagemAlt: 'Mão segurando guarda-chuva sobre recortes de papel de família, casa e carro (imagem ilustrativa)',
     corpo: `
 <p>Doar as quotas da holding aos filhos em vida é o coração do <a href="/blog/holding-x-inventario-x-testamento/">planejamento sucessório</a>. Mas uma doação “seca” pode trazer riscos: o herdeiro vender as quotas, perdê-las numa dívida ou dividi-las num divórcio. Por isso a doação costuma vir acompanhada de cláusulas restritivas.</p>
 
-<h2>Reserva de usufruto</h2>
-<p>Os pais doam a propriedade das quotas, mas mantêm o <strong>usufruto</strong>: continuam recebendo os lucros e, se o contrato prever, os direitos de voto. Com o falecimento, o usufruto se extingue e os filhos passam a ter a propriedade plena, sem novo inventário dessas quotas.</p>
+<nav class="sumario" aria-label="Nesta matéria"><strong>Nesta matéria</strong><ol>
+<li><a href="#usufruto">Reserva de usufruto</a></li>
+<li><a href="#restricoes">Inalienabilidade, impenhorabilidade e incomunicabilidade</a></li>
+<li><a href="#reversao">Reversão</a></li>
+<li><a href="#quadro">Quando usar cada cláusula</a></li>
+<li><a href="#legitima">Atenção à legítima e à colação</a></li>
+<li><a href="#perguntas">Perguntas frequentes</a></li>
+</ol></nav>
 
-<h2>Inalienabilidade</h2>
+<h2 id="usufruto">Reserva de usufruto</h2>
+<p>Os pais doam a propriedade das quotas, mas mantêm o <strong>usufruto</strong>: continuam recebendo os lucros (o usufrutuário tem direito à administração e aos frutos, ${link('cc', 'art. 1.394 do Código Civil')}) e, se o contrato prever, os direitos de voto. Com o falecimento, o usufruto se extingue e os filhos passam a ter a propriedade plena, sem novo inventário dessas quotas.</p>
+<p>O usufruto também ajuda a cumprir uma regra de proteção do doador: é nula a doação de todos os bens sem reservar parte ou renda suficiente para a própria subsistência (${link('cc', 'art. 548 do Código Civil')}).</p>
+
+<h2 id="restricoes">Inalienabilidade</h2>
 <p>Impede que o herdeiro venda ou doe as quotas sem autorização. Serve para manter o patrimônio na família e evitar decisões precipitadas.</p>
 
 <h2>Impenhorabilidade</h2>
@@ -441,14 +546,35 @@ ${AVISO}`
 <h2>Incomunicabilidade</h2>
 <p>Faz com que as quotas recebidas não entrem na partilha em caso de divórcio do herdeiro, qualquer que seja o regime de bens do casamento.</p>
 
-<h2>Reversão</h2>
-<p>Prevista no ${link('cc', 'art. 547 do Código Civil')}, faz com que as quotas <strong>voltem para o doador</strong> se ele sobreviver ao herdeiro que as recebeu. Evita que o patrimônio siga para a família do cônjuge do filho falecido.</p>
+<h2 id="reversao">Reversão</h2>
+<p>Prevista no ${link('cc', 'art. 547 do Código Civil')}, faz com que as quotas <strong>voltem para o doador</strong> se ele sobreviver ao herdeiro que as recebeu. Evita que o patrimônio siga para a família do cônjuge do filho falecido. A reversão só pode ser a favor do próprio doador, e não de terceiros.</p>
 
-<h2>Atenção à legítima</h2>
-<p>Metade do patrimônio é reservada por lei aos herdeiros necessários (a chamada legítima). No testamento, a lei só admite cláusulas restritivas sobre essa parte se houver <strong>justa causa declarada</strong> (<a href="https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm" rel="noopener">art. 1.848 do Código Civil</a>), e a mesma exigência costuma ser aplicada às doações que adiantam a legítima. Na doação, a lei também exige atenção ao adiantamento de legítima e à colação, para que nenhum filho seja favorecido sem querer.</p>
+<h2 id="quadro">Quando usar cada cláusula</h2>
+<div class="rolagem"><table class="tabela">
+<thead><tr><th>Cláusula</th><th>Protege contra</th><th>Quando costuma ser usada</th></tr></thead>
+<tbody>
+<tr><td>Reserva de usufruto</td><td>Perda de renda e de controle pelos pais</td><td>Quase sempre: os pais continuam recebendo os lucros e, se previsto, votando</td></tr>
+<tr><td>Inalienabilidade</td><td>Venda precipitada das quotas</td><td>Herdeiros jovens ou quando a família quer manter o patrimônio unido</td></tr>
+<tr><td>Impenhorabilidade</td><td>Dívidas do herdeiro</td><td>Herdeiros empresários ou com atividade de risco</td></tr>
+<tr><td>Incomunicabilidade</td><td>Partilha no divórcio do herdeiro</td><td>Herdeiros casados ou em união estável, em regime com comunhão de bens</td></tr>
+<tr><td>Reversão</td><td>Saída do patrimônio para a família do cônjuge</td><td>Quando o doador quer que as quotas voltem a ele se sobreviver ao filho</td></tr>
+</tbody></table></div>
+<p>Na escritura de doação, as cláusulas costumam ser escritas de forma direta, por exemplo: <em>"as quotas doadas ficam gravadas com as cláusulas de inalienabilidade, impenhorabilidade e incomunicabilidade, com reserva de usufruto vitalício em favor dos doadores"</em>. O texto exato deve ser redigido pelo advogado da família, conforme o caso.</p>
+
+<h2 id="legitima">Atenção à legítima e à colação</h2>
+<p>Metade do patrimônio é reservada por lei aos herdeiros necessários (a chamada legítima). No testamento, a lei só admite cláusulas restritivas sobre essa parte se houver <strong>justa causa declarada</strong> (<a href="https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm" rel="noopener">art. 1.848 do Código Civil</a>), e a mesma exigência costuma ser aplicada às doações que adiantam a legítima. Na doação, a lei também exige atenção ao adiantamento de legítima e à <strong>colação</strong>: os filhos que receberam doações em vida precisam conferir esses valores na sucessão para igualar as partes (${link('cc', 'art. 2.002 do Código Civil')}), salvo se o doador determinar que a doação sai da parte disponível, sem ultrapassá-la (${link('cc', 'art. 2.005')}). Doar a todos os filhos na mesma proporção evita discussões.</p>
 
 <h2>Combine com o contrato social</h2>
-<p>As cláusulas da doação funcionam melhor quando o contrato social e o <a href="/blog/governanca-na-empresa-familiar/">acordo de sócios</a> caminham juntos: regras para entrada de terceiros, direito de preferência entre os sócios, forma de cálculo do valor das quotas em caso de saída e quem administra a sociedade.</p>
+<p>As cláusulas da doação funcionam melhor quando o contrato social e o <a href="/blog/governanca-na-empresa-familiar/">acordo de sócios</a> caminham juntos: regras para entrada de terceiros, direito de preferência entre os sócios, forma de cálculo do valor das quotas em caso de saída e quem administra a sociedade. Use o nosso <a href="/blog/roteiro-contrato-social-holding-familiar/">roteiro do contrato social</a> para organizar essas decisões.</p>
+
+<h2 id="perguntas">Perguntas frequentes</h2>
+<h3>As cláusulas podem ser retiradas depois?</h3>
+<p>Em regra, só com autorização judicial e justa causa. Se o bem gravado for vendido com autorização, o valor deve ser aplicado em outros bens, que recebem as mesmas cláusulas (${link('cc', 'art. 1.911, parágrafo único')}).</p>
+<h3>O filho que recebeu as quotas pode votar nas reuniões?</h3>
+<p>Depende do contrato social e da escritura. É comum o voto ficar com os pais usufrutuários enquanto viverem; a família pode também dividir: o usufrutuário vota em temas do dia a dia e o filho em temas que mudam a estrutura da holding.</p>
+<h3>Preciso pagar ITCMD na doação com usufruto?</h3>
+<p>Sim. O imposto incide na doação, conforme a lei de cada estado. Veja os custos em <a href="/blog/quanto-custa-holding-familiar/">quanto custa abrir e manter uma holding familiar</a>.</p>
+<p>Se a família está nessa etapa, conheça o nosso <a href="/servicos/planejamento-sucessorio/">planejamento sucessório</a> e a <a href="/servicos/governanca-familiar/">governança familiar</a>.</p>
 ${AVISO}`
   },
   {
@@ -461,7 +587,7 @@ ${AVISO}`
     tituloSEO: 'Aluguel na pessoa física ou na holding: impostos',
     atualizado: '2026-11-11',
     fontes: [LEI.rf2026, LEI.l15270, LEI.lc224, LEI.l9249, LEI.cf, LEI.stf796, LEI.lc214],
-    descricao: 'Aluguel na pessoa física ou na holding: simulação com R$ 20 mil por mês, IR de 2026, lucro presumido, dividendos, ITBI e IBS/CBS a partir de 2027.',
+    descricao: 'Simulação com R$ 20 mil de aluguel por mês: na pessoa física, 23% de imposto; na holding, 11,3%. Veja ITBI, dividendos e o IBS/CBS a partir de 2027.',
     corpo: `
 <p>Para muitas famílias, a renda de aluguel é o principal motivo para pensar em uma <a href="/blog/o-que-e-holding-familiar/">holding familiar</a>. A comparação, porém, precisa ser feita com os números da própria família, e não com promessas genéricas de economia. Abaixo explicamos as regras e fazemos uma simulação completa.</p>
 
@@ -532,11 +658,14 @@ ${AVISO}`
   },
   {
     slug: 'governanca-na-empresa-familiar',
+    imagem: 'governanca-familiar.jpg',
+    imagemAlt: 'Ilustração de mesa de reunião vista de cima com cadeiras ao redor e documentos, representando o conselho de família',
     titulo: 'Governança na empresa familiar: acordo de sócios e conselho de família',
     tema: 'Governança',
     data: '2026-10-21',
     tituloSEO: 'Governança familiar: acordo de sócios e conselho',
-    atualizado: '2026-10-31',
+    atualizado: '2026-11-17',
+    fontes: [LEI.cc],
     descricao: 'Como acordo de sócios, protocolo familiar e conselho de família evitam conflitos e preparam a próxima geração para a gestão do patrimônio.',
     corpo: `
 <p>A maior ameaça a um patrimônio familiar raramente é o mercado. Na maioria das vezes, são os <strong>conflitos entre parentes</strong>: irmãos que discordam sobre vender um imóvel, cônjuges que entram na sociedade, herdeiros que querem sair e não sabem quanto vale a sua parte.</p>
@@ -551,6 +680,8 @@ ${AVISO}`
 <li>política de <a href="/blog/organizacao-financeira-da-familia-empresaria/">distribuição de lucros</a> e de reinvestimento;</li>
 <li>o que acontece em caso de divórcio, falecimento ou incapacidade de um sócio.</li>
 </ul>
+<p>Sem regra própria, valem os padrões do Código Civil: mudar o contrato social, nomear ou destituir administradores exige votos de mais da metade do capital (${link('cc', 'art. 1.076')}), e, se um sócio morre, a quota dele é liquidada e paga aos herdeiros, a menos que o contrato preveja outra coisa (${link('cc', 'art. 1.028')}). Para muitas famílias, esses padrões não servem, e é aí que o acordo faz diferença.</p>
+<p>Quando o contrato social da limitada prevê a aplicação supletiva das regras das sociedades anônimas (${link('cc', 'art. 1.053, parágrafo único')}), o acordo de sócios costuma ganhar mais força perante a própria sociedade. Use o nosso <a href="/blog/roteiro-contrato-social-holding-familiar/">roteiro do contrato social</a> para listar as decisões da família.</p>
 <p>Quando as quotas chegam aos herdeiros por doação, o acordo deve conversar com as <a href="/blog/clausulas-de-protecao-na-doacao-de-quotas/">cláusulas de proteção da doação</a>.</p>
 
 <h2>Protocolo familiar</h2>
@@ -573,11 +704,13 @@ ${AVISO}`
   },
   {
     slug: 'organizacao-financeira-da-familia-empresaria',
+    imagem: 'organizacao-financeira.jpg',
+    imagemAlt: 'Ilustração de pasta de documentos, gráfico de crescimento e cofre de moedas, representando a organização financeira da família',
     titulo: 'Organização financeira da família empresária: 7 hábitos essenciais',
     tema: 'Gestão',
     data: '2026-10-21',
     tituloSEO: 'Organização financeira da família empresária',
-    atualizado: '2026-10-31',
+    atualizado: '2026-11-17',
     fontes: [LEI.cc],
     descricao: 'Separar contas, definir pró-labore, manter reserva e registrar decisões: hábitos simples que protegem o patrimônio da família empresária.',
     corpo: `
@@ -602,7 +735,7 @@ ${AVISO}`
 <p>Reuniões de sócios com ata, mesmo que simples. Isso protege quem decidiu e informa quem não estava presente. Veja também como montar um <a href="/blog/governanca-na-empresa-familiar/">conselho de família</a>.</p>
 
 <h2>7. Revise o planejamento periodicamente</h2>
-<p>Casamentos, nascimentos, mudança de regras tributárias e compra ou venda de bens alteram o cenário. Uma revisão anual com contador e advogado mantém o planejamento atualizado.</p>
+<p>Casamentos, nascimentos, mudança de regras tributárias e compra ou venda de bens alteram o cenário. Uma revisão anual com contador e advogado mantém o planejamento atualizado. Se a família prefere delegar essa rotina, conheça a <a href="/servicos/administracao-de-holding-familiar/">administração de holding familiar</a> da Mana Vivaro.</p>
 ${AVISO}`
   }
 ];

@@ -226,6 +226,22 @@ p { margin: 0 0 1em; }
 
 .legenda { font-size: .82rem; color: var(--suave); margin-top: 8px; }
 .oculto { display: none !important; }
+
+/* Âncoras do sumário não ficam escondidas atrás do cabeçalho fixo */
+[id] { scroll-margin-top: 96px; }
+
+/* Roteiro para imprimir */
+.roteiro { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; }
+.artigo .roteiro li { display: flex; gap: 12px; align-items: flex-start; margin: 0; padding: 12px 14px; background: #fff; border: 1px solid var(--linha); border-radius: 10px; }
+.roteiro .caixa { flex: none; width: 20px; height: 20px; margin-top: 3px; border: 2px solid var(--marinho); border-radius: 4px; }
+@media print {
+  .topo, .rodape, .trilha, .chamada, .leia-tambem, .botao-imprimir, .artigo .capa, .pular { display: none !important; }
+  body { background: #fff; font-size: 12pt; }
+  .artigo { padding: 0; max-width: none; }
+  .artigo .roteiro li { break-inside: avoid; border-color: #999; }
+  .artigo h2 { break-after: avoid; }
+  a { color: inherit; text-decoration: none; }
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
 
 /* Área do cliente: cartões de imóveis e galeria de fotos */
