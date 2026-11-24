@@ -666,16 +666,30 @@ for (const m of ordenadas) {
       <h1>Política de privacidade</h1>
       <p class="meta">Atualizada em ${dataBR(HOJE)}</p>
       <p>Esta política explica como a Mana Vivaro trata os dados pessoais de quem visita o site manavivaro.com.br, de acordo com a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
-      <h2>Quais dados coletamos</h2>
-      <p>O site não usa cookies de rastreamento nem ferramentas de publicidade. O formulário de contato não grava dados em servidor: ele apenas abre o seu programa de e-mail com a mensagem pronta. Recebemos somente o que você decidir enviar por e-mail (nome, e-mail, telefone e mensagem).</p>
-      <h2>Para que usamos</h2>
-      <p>Usamos os dados apenas para responder ao seu contato e, se houver contratação, para prestar os serviços combinados.</p>
-      <h2>Compartilhamento</h2>
+      <h2>Visitantes do site</h2>
+      <p>O site não usa cookies de rastreamento nem ferramentas de publicidade. O formulário de contato não grava dados em servidor: ele apenas abre o seu programa de e-mail com a mensagem pronta. Recebemos somente o que você decidir enviar por e-mail (nome, e-mail, telefone e mensagem) e usamos esses dados para responder ao seu contato e, se houver contratação, para prestar os serviços combinados.</p>
+      <h2>Área do cliente</h2>
+      <p>A <a href="/area/">área do cliente</a> é restrita a clientes cadastrados pela Mana Vivaro. Para ela, tratamos:</p>
+      <ul>
+        <li><strong>dados de cadastro:</strong> nome e número de celular, informados pelo cliente ao contratar;</li>
+        <li><strong>dados de acesso:</strong> data e hora do último acesso e, para o administrador, o registro de quais documentos foram abertos;</li>
+        <li><strong>sessão de login:</strong> guardada no seu navegador (armazenamento local, não são cookies de rastreamento) até você sair ou ficar 30 minutos sem usar a área.</li>
+      </ul>
+      <p>Esses dados servem para confirmar sua identidade, mostrar os imóveis e documentos que você pode ver e manter a segurança da área. A base legal é a execução do contrato de prestação de serviços e o legítimo interesse em proteger as informações dos clientes (LGPD, art. 7º, V e IX).</p>
+      <h2>Prestadores de serviço</h2>
+      <ul>
+        <li><strong>Supabase:</strong> banco de dados, login e armazenamento dos arquivos dos imóveis, em servidores no Brasil (região de São Paulo).</li>
+        <li><strong>Twilio:</strong> envio do código de acesso por SMS. Para isso, o número do celular é processado nos Estados Unidos, com as garantias contratuais do prestador (LGPD, art. 33).</li>
+        <li><strong>GitHub Pages:</strong> hospedagem das páginas do site.</li>
+        <li><strong>Google Fonts:</strong> fontes tipográficas, que podem registrar o endereço IP do visitante conforme a política do Google.</li>
+      </ul>
       <p>Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing. Eles podem ser compartilhados apenas quando necessário para o serviço (por exemplo, com o advogado ou o contador indicados pela família) ou por obrigação legal.</p>
+      <h2>Por quanto tempo guardamos</h2>
+      <p>Os dados de cadastro e de acesso da área do cliente são mantidos enquanto durar a relação com a Mana Vivaro e, depois, apenas pelo prazo necessário para cumprir obrigações legais ou defender direitos. O acesso pode ser desativado a qualquer momento, a pedido do cliente.</p>
+      <h2>Segurança</h2>
+      <p>O acesso exige código de uso único enviado por SMS; o administrador usa também um segundo fator por aplicativo autenticador. Os arquivos ficam em armazenamento privado e são abertos por links que expiram em poucos minutos. Se identificar um problema de segurança, avise pelo e-mail abaixo.</p>
       <h2>Seus direitos</h2>
-      <p>Você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados, escrevendo para <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
-      <h2>Fontes externas</h2>
-      <p>As fontes tipográficas do site são carregadas do Google Fonts, que pode registrar o endereço IP do visitante conforme a política do Google.</p>
+      <p>Você pode pedir a qualquer momento confirmação, acesso, correção, anonimização, portabilidade ou exclusão dos seus dados, além de informações sobre o compartilhamento, escrevendo para <a href="mailto:${EMAIL}">${EMAIL}</a>.</p>
     </article>`
   });
 }
@@ -686,6 +700,8 @@ paginas['area/index.html'] = pagina({
   titulo: 'Área do cliente',
   descricao: 'Área restrita aos clientes cadastrados do Mana Vivaro.',
   semIndex: true,
+  // CSP só da área do cliente (o GitHub Pages não permite cabeçalhos; frame-ancestors é tratado no area.js)
+  preload: `<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://sodztpnfelmntvnbmzff.supabase.co; media-src 'self' blob: https://sodztpnfelmntvnbmzff.supabase.co; connect-src 'self' https://sodztpnfelmntvnbmzff.supabase.co wss://sodztpnfelmntvnbmzff.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">\n  <meta name="referrer" content="strict-origin-when-cross-origin">\n  `,
   conteudo: `
     <section class="cabecalho-pagina">
       <div class="container">
@@ -707,6 +723,20 @@ paginas['area/index.html'] = pagina({
         </form>
         <p id="area-msg" role="status" aria-live="polite" style="margin-top:16px"></p>
       </div>
+      <div class="container oculto" style="max-width:560px" id="area-mfa">
+        <form class="formulario" id="form-mfa">
+          <h2 id="mfa-titulo" style="margin:0;font-size:1.4rem">Ative o segundo fator de acesso</h2>
+          <div id="mfa-cadastro" class="oculto">
+            <p>Como administrador, você vê os documentos dos imóveis. Para protegê-los, instale um aplicativo autenticador (Google Authenticator, Microsoft Authenticator ou similar), toque em adicionar conta e leia o código abaixo.</p>
+            <img id="mfa-qr" alt="Código QR para o aplicativo autenticador" width="200" height="200" style="background:#fff;padding:8px;border-radius:10px">
+            <p><small>Se não conseguir ler o QR, digite esta chave no aplicativo: <code id="mfa-segredo" style="word-break:break-all"></code></small></p>
+          </div>
+          <label>Código de 6 dígitos do aplicativo<input name="codigo" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></label>
+          <button class="botao botao-primario" type="submit">Confirmar</button>
+          <button class="botao botao-contorno" type="button" id="mfa-pular">Ver só os imóveis, sem documentos</button>
+          <p id="mfa-msg" role="status" aria-live="polite" style="margin:0;color:#b42318"></p>
+        </form>
+      </div>
       <div class="container oculto" id="area-painel">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px">
           <p style="margin:0">Olá, <strong id="area-nome"></strong>.</p>
@@ -715,7 +745,7 @@ paginas['area/index.html'] = pagina({
         <div class="grade grade-3" id="area-imoveis"></div>
       </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" crossorigin="anonymous" defer></script>
     <script src="/assets/js/area.js?v=${hash('assets/js/area.js')}" defer></script>`
 });
 
@@ -765,6 +795,12 @@ fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls.map(([u, p, d]) => `  <url><loc>${SITE}${u}</loc><lastmod>${d || HOJE}</lastmod><priority>${p}</priority></url>`).join('\n') +
   `\n</urlset>\n`);
+// Contato para avisos de segurança (RFC 9116). A pasta .well-known só é publicada por causa do .nojekyll.
+fs.mkdirSync(path.join(RAIZ, '.well-known'), { recursive: true });
+fs.writeFileSync(path.join(RAIZ, '.well-known', 'security.txt'),
+  `Contact: mailto:${EMAIL}\nExpires: 2027-11-24T00:00:00.000Z\nPreferred-Languages: pt, en\nCanonical: ${SITE}/.well-known/security.txt\nPolicy: ${SITE}/privacidade/\n`);
+fs.writeFileSync(path.join(RAIZ, '.nojekyll'), '');
+
 // /area/ não vai no Disallow: o Google precisa ler a página para respeitar o noindex dela
 fs.writeFileSync(path.join(RAIZ, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /gerador/\n\nSitemap: ${SITE}/sitemap.xml\n`);
 

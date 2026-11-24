@@ -28,6 +28,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600&family=Inter:wght@400;500;600;700&display=swap">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://sodztpnfelmntvnbmzff.supabase.co; media-src 'self' blob: https://sodztpnfelmntvnbmzff.supabase.co; connect-src 'self' https://sodztpnfelmntvnbmzff.supabase.co wss://sodztpnfelmntvnbmzff.supabase.co; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="stylesheet" href="/assets/css/style.css?v=ab5e5d56">
   
 </head>
@@ -77,6 +79,20 @@
         </form>
         <p id="area-msg" role="status" aria-live="polite" style="margin-top:16px"></p>
       </div>
+      <div class="container oculto" style="max-width:560px" id="area-mfa">
+        <form class="formulario" id="form-mfa">
+          <h2 id="mfa-titulo" style="margin:0;font-size:1.4rem">Ative o segundo fator de acesso</h2>
+          <div id="mfa-cadastro" class="oculto">
+            <p>Como administrador, você vê os documentos dos imóveis. Para protegê-los, instale um aplicativo autenticador (Google Authenticator, Microsoft Authenticator ou similar), toque em adicionar conta e leia o código abaixo.</p>
+            <img id="mfa-qr" alt="Código QR para o aplicativo autenticador" width="200" height="200" style="background:#fff;padding:8px;border-radius:10px">
+            <p><small>Se não conseguir ler o QR, digite esta chave no aplicativo: <code id="mfa-segredo" style="word-break:break-all"></code></small></p>
+          </div>
+          <label>Código de 6 dígitos do aplicativo<input name="codigo" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" required></label>
+          <button class="botao botao-primario" type="submit">Confirmar</button>
+          <button class="botao botao-contorno" type="button" id="mfa-pular">Ver só os imóveis, sem documentos</button>
+          <p id="mfa-msg" role="status" aria-live="polite" style="margin:0;color:#b42318"></p>
+        </form>
+      </div>
       <div class="container oculto" id="area-painel">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px">
           <p style="margin:0">Olá, <strong id="area-nome"></strong>.</p>
@@ -85,8 +101,8 @@
         <div class="grade grade-3" id="area-imoveis"></div>
       </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" defer></script>
-    <script src="/assets/js/area.js?v=90a4a76e" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js" integrity="sha384-BWcjm9OdFth9TbhCxZPdm+gAOUMAzQy9nmTs12ioXdCcbVnJaPMn+fMUoQCLt60R" crossorigin="anonymous" defer></script>
+    <script src="/assets/js/area.js?v=569680ff" defer></script>
   </main>
 
   <footer class="rodape">
